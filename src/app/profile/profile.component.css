@@ -1,0 +1,55 @@
+.edit-profile-container {
+    width: 560px;
+    height: 570px;
+    padding: 20px;
+    margin-top: 175px;
+    display: inline-block;
+    background-color: #a1ffaa;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.edit-profile-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 50px;
+}
+
+button[type="button"] {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    background-color: #6bf1e0;
+    color: black;
+    border: none;
+    margin-left: 50px;
+    margin-top: 50px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #9cc6f3;
+}

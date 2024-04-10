@@ -1,0 +1,38 @@
+#row {
+    max-width: 100%; /* Ajusta el ancho máximo del contenedor */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+#foto {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    object-fit: cover; /* Esto ajustará la imagen manteniendo su relación de aspecto y cubriendo todo el contenedor */
+}
+#botonCentrado {
+    position: relative;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: transparent; /* Hace el botón transparente */
+    font-size: 22px; 
+    font-family: Abril Fatface; 
+    font-weight: 400; 
+    color: #ffffff; /* Color de la tipografía */
+    border: 2px solid #ffffff; /* Borde blanco */
+    padding: 10px 20px; /* Ajusta el padding según sea necesario */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+.login{
+    display: inline-block;
+    height: 500px;
+}
+#botonCentrado:hover {
+    /* background-color: rgba(255, 255, 255, 0.3); Cambia el fondo a semitransparente en hover */
+    background-color: white;
+    color:black; /* Cambia el color del texto en hover */
+}
+

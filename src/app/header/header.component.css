@@ -1,0 +1,106 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 300px 30px 50px; /* Ajustar el padding para dejar más espacio en el lado izquierdo y abajo */
+    color: #000;
+    position: fixed; /* Hacer que el encabezado sea fijo */
+    top: 0; /* Colocar el encabezado en la parte superior */
+    width: 100%; /* Ajustar el ancho al 100% del viewport */
+    z-index: 999; /* Asegurarse de que el encabezado esté por encima de otros elementos */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Agregar una sombra sutil */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad de 0.7 */
+}
+
+
+
+.container {
+    position: relative; /* Ajustar el contenido del encabezado para evitar que se solape */
+    z-index: 1; /* Asegurarse de que el contenido esté por encima del fondo */
+}
+#logo {
+    display: flex; /* Agregar display flex */
+    width: auto; /* Cambiar a ancho automático para mantener la proporción de la imagen */
+    left: 0px;
+    max-width: 250px; /* Establecer un ancho máximo para reducir el tamaño de la imagen */
+    max-height: 100px; /* Establecer una altura máxima para mantener la proporción de la imagen */
+    position: absolute;
+    top: -28px;
+}
+.spacer {
+    width: 20%; /* Ancho del espaciador */
+    background-color: black; /* Color del espaciador */
+
+}
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.icon-container {
+    margin-left: 10px; /* Ajustar el margen entre los iconos */
+    left: 250px;
+    position: relative;
+}
+
+.icon-container img {
+    width: 20px; /* Establecer el ancho de las imágenes */
+    height: 20px; /* Establecer el alto de las imágenes */
+    object-fit: cover; /* Ajustar el contenido de la imagen para que se ajuste dentro del tamaño especificado sin distorsión */
+}
+
+.main-nav {
+    margin-right: 50px; /* Ajustar el margen derecho para el espacio del encabezado */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    white-space: nowrap; /* Evitar el salto de línea */
+    transition: color 0.3s; /* Transición suave del color */
+}
+
+.main-nav ul li a:hover {
+    color: #00DDE8; /* Cambiar el color en el hover */
+}
+
+.main-nav ul .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav ul .dropdown:hover .dropdown-menu {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad de 0.7 */
+    text-align: center;
+}
+
+
+
+
+.profile-image-container {
+    margin-left: auto; /* Hacer que el contenedor de la imagen del perfil se alinee a la derecha */
+    margin-right: auto; /* Ajustar el margen derecho */
+    position: relative;
+    left: 100px;
+}
+
+.profile-image {
+    width: 40px; /* Establecer el ancho de la imagen del perfil */
+    height: 40px; /* Establecer el alto de la imagen del perfil */
+    border-radius: 50%; /* Hacer que la imagen del perfil sea circular */
+}

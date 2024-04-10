@@ -1,0 +1,30 @@
+<div class="register-box">
+    <h1>Registro</h1>
+    <form #registro="ngForm" (ngSubmit)="enviarRegistro()">
+        <label for="nombre">Nombre</label>
+        <br>
+        <input type="text" name="nombre" id="nombre" [(ngModel)]="formulario_data.nombre" required pattern="[A-Za-z]{3,10}">
+        <p></p><span [hidden]="registro.controls['nombre'].valid || !registro.controls['nombre'].dirty">El nombre debe tener entre 3 y 10 letras</span>      
+
+        
+        <label for="apellidos">Apellidos</label>
+        <br>
+        <input type="text" name="apellidos" id="apellidos" [(ngModel)]="formulario_data.apellidos" required pattern="[A-Za-z]{3,10}">
+        <p></p><span [hidden]="registro.controls['apellidos'].valid || !registro.controls['apellidos'].dirty">Los apellidos deben tener entre 3 y 10 letras</span>        
+
+        
+        <label for="correo">Correo Electrónico</label>
+        <br>
+        <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" required email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+        <p></p><span [hidden]="registro.controls['email'].valid || !registro.controls['email'].dirty">Correo electrónico inválido</span>
+
+               
+        <label for="contraseña">Contraseña</label>
+        <br>
+        <input type="password" name="password" id="password" [(ngModel)]="formulario_data.password" required minlength="6" pattern=".*[A-Z].*">
+        <p></p><span [hidden]="registro.controls['password'].valid || !registro.controls['password'].dirty">La contraseña debe tener al menos 6 caracteres y una letra mayúscula</span>
+
+        
+        <h2><button type="submit" [disabled]="!registro.form.valid">REGISTRATE</button></h2>
+    </form>
+</div>

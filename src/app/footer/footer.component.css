@@ -1,0 +1,33 @@
+footer {
+    background: linear-gradient(to right, #003169 0%, #016A9D 50%, #00DDE8 100%);
+    /* background-color: #1bd62e; */
+    /* background: linear-gradient(180deg, #00FF19 0%, rgba(103.06, 255, 118.26, 0) 100%); */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    top: 150px;
+    width: 100%;
+}
+/* Estilos para los enlaces */
+footer nav {
+    margin-top: 20px;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer hr {
+    border: none;
+    border-top: 1px solid white;
+    margin: 10px auto;
+    width: 50%;
+}
+
+.whatsapp-icon {
+    position: fixed;
+    bottom: 20px; /* Ajusta esta propiedad según sea necesario para la posición deseada */
+    right: 20px; /* Ajusta esta propiedad según sea necesario para la posición deseada */
+    z-index: 1000; /* Asegura que el icono esté por encima de otros elementos */
+  }

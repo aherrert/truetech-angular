@@ -1,0 +1,78 @@
+.register-box {
+    width: 641px;
+    height: 970px;
+    padding: 20px;
+    background-color: #a1ffaa;
+    border-radius: 50px;
+    text-align: center;
+    margin-top: 175px;
+    display: inline-block;
+    /* margin: 250px auto; Auto para los lados izquierdo y derecho */
+}
+.register-box h1 {
+    margin-bottom: 40px;
+    color: black;
+    font-size: 35px;
+    font-family: 'Abril Fatface';
+    font-weight: 600;
+    position: relative; /* Ajustar la posición relativa */
+    top: 50px; /* Mover hacia abajo */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+}
+.ng-invalid {
+    color: red;
+    caret-color: black; /* Cambia el color del cursor de texto a negro */
+
+}
+
+.ng-valid {
+    color: black;
+}
+    .register-box input[type="text"],
+    .register-box input[type="email"],
+    .register-box input[type="password"],
+    .register-box button[type="submit"] {
+        width: 70%;
+        padding: 10px;
+        margin-bottom: -100px;
+        border: none;
+        border-radius: 50px;
+        box-sizing: border-box;
+        margin-top: 60px;
+
+    }
+    .register-box label {
+        display: block; /* Mostrar cada etiqueta en una línea separada */
+        font-family: 'Abril Fatface';
+        font-weight: 600;
+        text-transform: uppercase; /* Convertir a mayúsculas */
+        color: black;
+        position: relative; /* Ajustar la posición relativa */
+        top: 70px; /* Mover hacia abajo */
+    }
+    .register-box button[type="submit"] {
+        background-color: #6bf1e0;
+        color: black;
+        font-family: 'Abril Fatface';
+        font-weight: 600;
+        cursor: pointer;
+        width: 50%;
+        position: relative; /* Ajustar la posición relativa */
+        top:5px; /* Mover hacia abajo */
+        text-transform: uppercase; /* Convertir a mayúsculas */
+    }
+    .register-box button[type="submit"][disabled],
+    .register-box button[type="submit"][disabled]:hover {
+        background-color: #cccccc; /* Cambia el color de fondo */
+        cursor: not-allowed; /* Cambia el cursor */
+        opacity: 0.6; /* Reduce la opacidad para indicar que está desactivado */
+    }
+    
+      
+    .register-box button[type="submit"]:hover {
+        background-color: #9cc6f3;
+    }
+    
+
+
+    

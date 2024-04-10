@@ -1,0 +1,48 @@
+<header class="main-header ">
+    <div class="container">
+        <div id="degradado" class="bg-gradient-success"></div>
+        <!-- Enlace que envuelve la imagen del logo -->
+        <a routerLink="/home">
+            <div id="logo" class="my-3">
+                <img src="../assets/imagenes/{{ datos.images[2].image }}" class="img-fluid">
+            </div>
+        </a>
+        <div class="spacer"></div> <!-- Espaciador -->
+
+        <div class="social-icons">
+            <div class="icon-container">
+                <img src="../assets/imagenes/twitter_header1.png" alt="Logo de Twitter" width="20px" height="20px">
+            </div>
+            <div class="icon-container">
+                <img src="../assets/imagenes/watsap_header2.png" alt="Logo de LinkedIn" width="20px" height="20px">
+            </div>
+            <div class="icon-container">
+                <img src="../assets/imagenes/instagram.png" alt="Logo de Instagram" width="20px" height="20px">
+            </div>
+        </div>
+
+       
+        
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Departamentos</a>
+                <ul class="dropdown-menu">
+                    <li><a routerLink="../tickets/software">Software</a></li>
+                    <li><a routerLink="../tickets/hardware">Hardware</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+    </nav>
+    
+     <!-- Enlace del perfil -->
+     <a routerLink="/profile">
+        <div class="profile-image-container">
+            <img src="../../assets/imagenes/user.svg" alt="Perfil" class="profile-image rounded-circle">
+        </div>
+    </a>
+</header>

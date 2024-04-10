@@ -1,0 +1,58 @@
+.hardware-box {
+  width: 641px;
+  height: 690px;
+  padding: 20px;
+  background-color: #a1ffaa;
+  border-radius: 50px;
+  text-align: center;
+  margin-top: 175px;
+  display: inline-block;
+}
+
+.hardware-box h1 {
+  margin-bottom: 40px;
+  color: black;
+  font-size: 35px;
+  font-family: "Abril Fatface";
+  font-weight: 600;
+  position: relative;
+  top: 10px;
+  text-transform: uppercase;
+}
+
+.hardware-box label {
+  display: block;
+  font-family: "Abril Fatface";
+  font-weight: 600;
+  text-transform: uppercase;
+  color: black;
+  position: relative;
+  margin-bottom: 20px;
+  top: 30px; /* Ajuste para bajar más los labels */
+}
+
+.hardware-box input[type="text"],
+.hardware-box input[type="email"],
+.hardware-box textarea,
+.hardware-box input[type="button"] {
+  width: 70%;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.hardware-box input[type="button"] {
+  background-color: #6bf1e0;
+  color: black;
+  font-family: "Abril Fatface";
+  font-weight: 600;
+  cursor: pointer;
+  width: 50%;
+  text-transform: uppercase;
+}
+
+.hardware-box input[type="button"]:hover {
+  background-color: #9cc6f3;
+}

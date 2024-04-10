@@ -1,0 +1,38 @@
+<div class="login-box">
+    <!-- Heading -->
+    <h4 class="text-center mb-4">
+        Bienvenido de nuevo
+    </h4>
+    <!-- Subheading -->
+    <p class="text-center text-muted mb-5">
+        Complete el siguiente formulario para iniciar sesión en su cuenta.</p>
+    <form #loginForm="ngForm" (ngSubmit)="enviarIniciosesion()">
+        <label for="correo">Correo Electrónico</label>
+        <br>
+        <input type="email" name="correo" id="correo" [(ngModel)]="formulario_data.correo" class="form_input" required
+            email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="">
+
+        <p></p>
+        <span [hidden]="loginForm.controls['correo'].valid || !loginForm.controls['correo'].dirty">Correo
+            electrónico inválido</span>
+
+
+        <div class="form_container">
+            <div class="form_group">
+                <label for="contraseña">Contraseña</label>
+                <br>
+                <input type="password" name="password" id="password" [(ngModel)]="formulario_data.password"
+                    class="form_input" required minlength="6" pattern=".*[A-Z].*" placeholder="">
+                <p></p>
+                <span [hidden]="loginForm.controls['password'].valid || !loginForm.controls['password'].dirty">La
+                    contraseña debe tener al menos 6 caracteres y una letra mayúscula</span>
+            </div>
+        </div>
+        <input type="checkbox" id="recordarme-checkbox" class="recordarme-checkbox">
+        <label for="recordarme-checkbox" class="recordarme-label">Recordarme</label>
+
+        <h2><button type="submit" [disabled]="!loginForm.form.valid">Iniciar Sesión</button></h2>
+    </form>
+    <p>¿No eres miembro todavía? Inscribirse. <a routerLink="../register/" class="enlace-registro">Regístrate</a></p>
+    <p><a href="#" class="enlace-olvidado">¿Has olvidado la contraseña?</a></p>
+</div>
