@@ -40,6 +40,12 @@
         [hidden]="formulario.controls['mensaje_reparacion'].valid || !formulario.controls['mensaje_reparacion'].dirty"
         class="text-danger">Este campo es obligatorio</span>
     </div>
+    <div class="form-group">
+      <label for="imagen" style="display: block; text-align: left;">Adjuntar Imagen</label>
+      <input type="file" name="imagen" id="imagen" accept="image/*" (change)="onFileSelected($event)" required>
+      <span *ngIf="formulario.controls['imagen'].errors?.['required'] && formulario.controls['imagen'].touched"
+      class="text-danger">Por favor, seleccione una imagen</span>    
+    </div>
     <button type="submit" [disabled]="!formulario.valid">Abrir Incidencia</button>
   </form>
   <!-- Mensaje de incidencia enviada -->

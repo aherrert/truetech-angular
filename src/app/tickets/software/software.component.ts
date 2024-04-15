@@ -29,16 +29,22 @@ export class SoftwareComponent {
       nombre_completo: '',
       email: '',
       asunto_reparacion: '',
-      mensaje_reparacion: ''
+      mensaje_reparacion: '',
+      imagen: null // Agrega la variable para almacenar la imagen seleccionada
     };
-
   }
 
   enviarIncidencia() {
+    if (!this.formulario_data.imagen) {
+      console.error("Por favor, seleccione una imagen.");
+      return; // No enviamos el formulario si no hay imagen seleccionada
+    }
+  
     this.enviarIncidenciaService.enviarIncidencia(this.formulario_data);
     this.mostrarFormulario = false;
     this.incidenciaEnviada = true;
   }
+  
 
   toggleFormulario() {
     this.mostrarFormulario = !this.mostrarFormulario;
@@ -66,4 +72,29 @@ export class SoftwareComponent {
       this.enviarIncidenciaService.editarIncidencia(formulario_data);
     }
   }
+
+  // Método para manejar la selección de archivo
+  onFileSelected(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement && inputElement.files && inputElement.files.length > 0) {
+      const file: File = inputElement.files[0];
+      // Verificar si el tipo de archivo es permitido
+      if (this.isValidFileType(file)) {
+        // Aquí puedes procesar el archivo, como guardarlo en tu variable formulario_data.imagen
+        this.formulario_data.imagen = file;
+      } else {
+        // Mostrar un mensaje de error o tomar otra acción adecuada
+        console.error("Tipo de archivo no permitido. Selecciona una imagen JPEG, JPG o PNG.");
+      }
+    }
+  }
+  
+  // Método para verificar si el tipo de archivo es válido
+  isValidFileType(file: File): boolean {
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+    return allowedTypes.includes(file.type);
+  }
+  
+  
+  
 }
