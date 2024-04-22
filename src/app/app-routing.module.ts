@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { SoftwareComponent } from './tickets/software/software.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'tickets/hardware', component: HardwareComponent },
   { path: 'tickets/software', component: SoftwareComponent },
-
+  { path: 'contact', component: ContactComponent },
 
 
 ];
