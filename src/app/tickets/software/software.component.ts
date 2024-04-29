@@ -26,7 +26,6 @@ export class SoftwareComponent {
 
   constructor(private enviarIncidenciaService: PetitionService) {
     this.formulario_data = {
-      nombre_completo: '',
       email: '',
       asunto_reparacion: '',
       mensaje_reparacion: '',

@@ -9,14 +9,6 @@
   <form *ngIf="mostrarFormulario" class="slide-in" (ngSubmit)="enviarIncidencia()" #formulario="ngForm">
     <p class="subtitulo">Complete el siguiente formulario para abrir una incidencia de ticket.</p>
     <div class="form-group">
-      <label for="nombreCompleto">Nombre Completo</label>
-      <input type="text" name="nombre_completo" id="nombre_completo" [(ngModel)]="formulario_data.nombre_completo"
-        required pattern="[A-Za-z\s]{3,100}">
-      <p></p>
-      <span [hidden]="formulario.controls['nombre_completo'].valid || !formulario.controls['nombre_completo'].dirty"
-        class="text-danger">El nombre debe tener entre 3 y 100 letras</span>
-    </div>
-    <div class="form-group">
       <label for="correoElectronico">Correo Electrónico</label>
       <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" required>
       <p></p>
