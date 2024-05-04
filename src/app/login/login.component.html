@@ -9,11 +9,11 @@
     <form #loginForm="ngForm" (ngSubmit)="enviarIniciosesion()">
         <label for="correo">Correo Electrónico</label>
         <br>
-        <input type="email" name="correo" id="correo" [(ngModel)]="formulario_data.correo" class="form_input" required
+        <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" class="form_input" required
             email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="">
 
         <p></p>
-        <span [hidden]="loginForm.controls['correo'].valid || !loginForm.controls['correo'].dirty">Correo
+        <span [hidden]="loginForm.controls['email'].valid || !loginForm.controls['email'].dirty">Correo
             electrónico inválido</span>
 
 

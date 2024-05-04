@@ -6,9 +6,12 @@
       <img id="foto" [src]="'../assets/imagenes/' + datos.images[0].image" class="img-fluid">
 
       <!-- Botón de login -->
-      <a  class="login" routerLink="/login" *ngIf="!notLogged">
-      <button id="botonCentrado" class="btn btn-primary">LOGIN</button>
-      </a>  
+      <a class="login" routerLink="/login" *ngIf="notLogged">
+        <button id="botonCentrado" class="btn btn-primary">LOGIN</button>
+      </a>
+      <a class="login" routerLink="/login" *ngIf="!notLogged">
+        <button id="botonCentrado" class="btn btn-primary">LOGOUT</button>
+      </a>      
   </div>
 </div>
 

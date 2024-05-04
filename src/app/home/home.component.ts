@@ -7,14 +7,21 @@ import { DatosService } from '../datos.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    datos: any;
-    notLogged=false
-  
-    constructor(private datosService: DatosService) {}
-  
-    ngOnInit(): void {
+  datos: any;
+  notLogged = false;
 
-      // Implementación del servicio DatosService
-      this.datos = this.datosService.obtenerDatosIniciales();
+  constructor(
+    private datosService: DatosService,
+  ) {}
+
+  ngOnInit(): void {
+    // Implementación del servicio DatosService
+    this.datos = this.datosService.obtenerDatosIniciales();
+    
+    // Comprueba si el usuario está autenticado
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    if (!nombreUsuario) {
+      this.notLogged = true;
     }
+  }
 }

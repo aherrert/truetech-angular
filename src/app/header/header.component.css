@@ -104,3 +104,10 @@
     height: 40px; /* Establecer el alto de la imagen del perfil */
     border-radius: 50%; /* Hacer que la imagen del perfil sea circular */
 }
+#nombre-usuario {
+    position: relative;
+    left: 110px; /* Ajusta la posición según sea necesario */
+    color: white;
+  }
+  
+  
