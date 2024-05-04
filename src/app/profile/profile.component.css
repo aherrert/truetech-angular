@@ -1,55 +1,249 @@
-.edit-profile-container {
-    width: 560px;
-    height: 570px;
+.login-box {
+    width: 41%;
+    height: 780px;
     padding: 20px;
-    margin-top: 175px;
-    display: inline-block;
-    background-color: #a1ffaa;
-    border-radius: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-}
-
-.edit-profile-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    background-color: rgb(255, 255, 255); /* Gris claro en formato RGB */
     text-align: center;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.form-group input {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    border-radius: 50px;
-}
-
-button[type="button"] {
-    display: block;
-    width: 80%;
-    padding: 10px;
-    background-color: #6bf1e0;
+    margin-top: 150px;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Aquí se aplica la sombra */
+    border-top: 2px solid #00DDE8; /* Cambia el color y el grosor de la línea superior */
+  }
+  
+  
+  /* Estilos para el encabezado */
+  
+  .login-box h4 {
+    text-align: center;
+    margin-bottom: 17px;
     color: black;
-    border: none;
-    margin-left: 50px;
-    margin-top: 50px;
-    border-radius: 50px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    top: 50px;
+    position: relative;
+    font-size: 22px;
+    font-weight: bold; /* Esto hará que el texto esté en negrita */
+  }
+  
+  
+  
+  .text-center.text-muted.mb-5 {
+    text-transform: none; /* Esto hará que todo el texto esté en minúsculas */
+    font-size: 15px;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    top: 60px;
+  
+  }
+  
+ 
+  .ng-invalid {
+    color: red;
+    caret-color: black; /* Cambia el color del cursor de texto a negro */
+    top: 100px;
+  }
+  
+  .ng-valid {
+    color: black;
+  }
+  label[for="name"] {
+    /* Estilos para la etiqueta de correo electrónico */
+    color: black;
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-bottom: 5px; /* Espacio inferior */
+    display: block; /* Mostrar como bloque para ocupar toda la anchura disponible */
+    text-align: left;
+    position: relative;
+    left: 40px;
+    top: 50px;
+  }
+  label[for="correo"] {
+    /* Estilos para la etiqueta de correo electrónico */
+    color: black;
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-bottom: 5px; /* Espacio inferior */
+    display: block; /* Mostrar como bloque para ocupar toda la anchura disponible */
+    text-align: left;
+    position: relative;
+    left: 40px;
+    top: 80px;
+  }
+  .login-box input[id="nombre"] {
+    width: calc(90% - 30px); /* Tamaño del input con respecto al tamaño total */
+    padding: 10px 10px 10px 40px; /* Ajustar el padding para dejar espacio para la imagen */
+    margin-bottom: -100px;
+    border: 1px solid rgb(243, 241, 241); /* Borde negro y fino */
+    background-color: rgb(250, 248, 248); /* Gris claro en formato RGB */
+    box-sizing: border-box;
+    margin-top: 35px;
+    background-image: url('../../assets/imagenes/user.png'); /* Ruta de la imagen */
+    background-size: 15px 17px; /* Tamaño de la imagen */
+    background-repeat: no-repeat; /* Evitar repetir la imagen */
+    background-position: 10px center; /* Posición de la imagen */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+  }
+  .login-box input[id="nombre"]:hover {
+    border-color: #00DDE8; /* Cambiar el color del borde al hacer clic en el input */
+  }
+  .login-box input[type="email"]{
+    width: calc(90% - 30px); /* Tamaño del input con respecto al tamaño total */
+    padding: 10px 10px 10px 40px; /* Ajustar el padding para dejar espacio para la imagen */
+    margin-bottom: -100px;
+    border: 1px solid rgb(243, 241, 241); /* Borde negro y fino */
+    background-color: rgb(250, 248, 248); /* Gris claro en formato RGB */
+    box-sizing: border-box;
+    margin-top: 25px;
+    top: 40px;
+    position: relative;
+    background-image: url('../../assets/imagenes/carta.webp'); /* Ruta de la imagen */
+    background-size: 15px 17px; /* Tamaño de la imagen */
+    background-repeat: no-repeat; /* Evitar repetir la imagen */
+    background-position: 10px center; /* Posición de la imagen */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+  }
+  .login-box input[id="apellidos"]:hover {
+    border-color: #00DDE8; /* Cambiar el color del borde al hacer clic en el input */
+  }
+  label[for="apellidos"]{
+    /* Estilos para la etiqueta de correo electrónico */
+    color: black;
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-bottom: 5px; /* Espacio inferior */
+    display: block; /* Mostrar como bloque para ocupar toda la anchura disponible */
+    text-align: left;
+    position: relative;
+    left: 40px;
+    bottom: 0px;
+  }
 
-button[type="button"]:hover {
-    background-color: #9cc6f3;
-}
+  .login-box input[id="apellidos"]  {
+    width: calc(90% - 30px); /* Tamaño del input con respecto al tamaño total */
+    padding: 10px 10px 10px 40px; /* Ajustar el padding para dejar espacio para la imagen */
+    margin-bottom: -100px;
+    border: 1px solid rgb(243, 241, 241); /* Borde negro y fino */
+    background-color: rgb(250, 248, 248); /* Gris claro en formato RGB */
+    box-sizing: border-box;
+    margin-top: -50px;
+    background-image: url('../../assets/imagenes/apellidos.png'); /* Ruta de la imagen */
+    background-size: 18px 23px; /* Tamaño de la imagen */
+    background-repeat: no-repeat; /* Evitar repetir la imagen */
+    background-position: 10px center; /* Posición de la imagen */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+  }
+  
+  .login-box input[type="email"]:hover {
+    border-color: #00DDE8; /* Cambiar el color del borde al hacer clic en el input */
+  }
+  
+  label[for="contraseña"] {
+    /* Estilos para la etiqueta de correo electrónico */
+    color: black;
+    font-size: 14px; /* Tamaño de la fuente */
+    margin-bottom: 5px; /* Espacio inferior */
+    display: block; /* Mostrar como bloque para ocupar toda la anchura disponible */
+    text-align: left;
+    position: relative;
+    left: 40px;
+    top: 10px;
+  }
+  .login-box input[type="password"] {
+    width: calc(90% - 30px); /* Tamaño del input con respecto al tamaño total */
+    padding: 10px 10px 10px 40px; /* Ajustar el padding para dejar espacio para la imagen */
+    margin-bottom: -100px;
+    border: 1px solid rgb(243, 241, 241); /* Borde negro y fino */
+    background-color: rgb(250, 248, 248); /* Gris claro en formato RGB */
+    box-sizing: border-box;
+    margin-top: 25px;
+    top: -30px;
+    position: relative;
+    background-image: url('../../assets/imagenes/candado1.jpg'); /* Ruta de la imagen */
+    background-size: 16px 23px; /* Tamaño de la imagen */
+    background-repeat: no-repeat; /* Evitar repetir la imagen */
+    background-position: 10px center; /* Posición de la imagen */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+  }
+  
+  .login-box input[type="password"]:hover {
+    border-color: #00DDE8; /* Cambiar el color del borde al hacer clic en el input */
+  }.recordarme-checkbox {
+    display: none; /* Ocultar el checkbox nativo */
+  }
+  
+  .recordarme-label {
+    color: black;
+  }
+  
+  .recordarme-label::before {
+    content: "\2713"; /* Símbolo de checkmark */
+    font-size: 15px;
+    color: transparent; /* Color transparente por defecto */
+    border: 1px solid rgb(243, 241, 241); /* Borde negro y fino */
+    border-radius: 4px; /* Borde redondeado */
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 10px; /* Mover el checkbox hacia la izquierda */
+  }
+  label.recordarme-label{
+    position: relative;
+  left: -150px;
+  top: 25px;
+  }
+  
+  .recordarme-checkbox:checked + .recordarme-label::before {
+    color: white; /* Color del checkmark cuando está seleccionado */
+    background-color: #00DDE8;
+  }
+  
+  
+  
+  
+  .login-box button[type="submit"] {
+    border-color:  #00DDE8;
+    border-width: 1.5px; /* Ancho del borde más delgado */
+  
+    color: black;
+    cursor: pointer;
+    width: 25%;
+    height: 50px;
+    position: relative; /* Ajustar la posición relativa */
+    bottom: 15px; /* Mover hacia abajo */
+    left: 150px;
+    font-size: 12px;
+    text-transform: uppercase; /* Convertir a mayúsculas */
+    background-color: white;
+    transition: color 0.3s ease; /* Transición suave del color del borde */
+  
+  }
+  
+  .login-box button[type="submit"][disabled],
+  .login-box button[type="submit"][disabled]:hover {
+    opacity: 0.6; /* Reduce la opacidad para indicar que está desactivado */
+    color: #00DDE8; /* Cambiar el color del texto al pasar el ratón */
+    color: black;
+  }
+  
+  .login-box button[type="submit"]:hover {
+    color: #00DDE8; /* Cambiar el color del texto al pasar el ratón */
+    background-color: white;
+  }
+  
+  .login-box p {
+    margin-bottom: 10px;
+    position: relative; /* Ajustar la posición relativa */
+    top: -10px; /* Mover hacia abajo */
+    font-size: 14px;
+    text-decoration: none; /* Quitar el subrayado de los enlaces */
+    color: black;
+  
+  }
+  .enlace-registro {
+    text-decoration: none; /* Quitar el subrayado */
+    color: #00DDE8; /* Cambiar el color del texto */
+  }
+  .enlace-olvidado {
+    text-decoration: none; /* Quitar el subrayado */
+    color: #00DDE8; /* Cambiar el color del texto */
+  }

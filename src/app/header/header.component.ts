@@ -15,6 +15,19 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     // Implementación del servicio DatosService
     this.datos = this.datosService.obtenerDatosIniciales();
+    const nombreUsuarioElement = document.getElementById('nombre-usuario');
+    if (nombreUsuarioElement !== null) {
+      // Obtener el nombre de usuario desde localStorage
+      const nombreUsuario = localStorage.getItem('nombreUsuario');
+      if (nombreUsuario) {
+        nombreUsuarioElement.innerText = nombreUsuario;
+      } else {
+        console.error("Nombre de usuario no encontrado en el almacenamiento local.");
+      }
+    } else {
+      console.error("Elemento con id 'nombre-usuario' no encontrado en el DOM.");
+    }
+  
   }
 }
 
