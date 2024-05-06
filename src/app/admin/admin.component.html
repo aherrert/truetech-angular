@@ -1,0 +1,74 @@
+<div *ngIf="usuarios" class="usuarios-container">
+    <h2>Listado de Usuarios</h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Cargo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let usuario of usuarios">
+                <tr>
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }} </td>
+                    <td>{{ usuario.apellidos }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.password }}</td>
+                    <td>{{ usuario.id_cargo }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div class="form-container">
+        <!-- Formulario para agregar un nuevo usuario -->
+        <h2>Agregar Nuevo Usuario</h2>
+        <form (ngSubmit)="agregarUsuario()">
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" [(ngModel)]="formulario_data.nombre">
+            </div>
+            <div>
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" [(ngModel)]="formulario_data.apellidos">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="formulario_data.email">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" [(ngModel)]="formulario_data.password">
+            </div>
+            <div>
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" [(ngModel)]="formulario_data.id_cargo">
+                    <option value="1">Administrador</option>
+                    <option value="2">Departamento Software</option>
+                    <option value="3">Departamento Hardware</option>
+                    <option value="4">Cliente</option>
+                </select>
+            </div>
+            <p></p>
+            <button type="submit">Agregar Usuario</button>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <!-- Formulario para eliminar un usuario -->
+        <h2>Desactivar Usuario</h2>
+        <div>
+            <label for="id">ID:</label>
+            <input type="number" id="id" name="id" [(ngModel)]="id">
+            <button id="submit" (click)="eliminarUsuarios()">Eliminar Usuario</button>
+        </div>
+        <p></p>
+    </div>
+
+</div>

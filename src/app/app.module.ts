@@ -15,6 +15,7 @@ import { SoftwareComponent } from './tickets/software/software.component';
 import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { Header2Component } from './header2/header2.component';
 import { ContactComponent } from './contact/contact.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ContactComponent } from './contact/contact.component';
     HardwareComponent,
     Header2Component,
     ContactComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

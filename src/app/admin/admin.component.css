@@ -1,0 +1,91 @@
+.usuarios-container {
+  margin-top: 130px; /* Agregar margen superior de 150px */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos horizontalmente */
+}
+
+.form-container {
+  width: 45%; /* Ancho de cada contenedor de formulario */
+}
+
+/* Estilos adicionales para los formularios */
+form {
+  max-width: 400px;
+  margin: 25px auto 0 auto; /* Agrega un margen superior de 25px */
+}
+
+/* Estilos para el título "Agregar Nuevo Usuario" y "Eliminar Usuario" */
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Estilos para los elementos del formulario */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos para el botón "Agregar Usuario" */
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos cuando el cursor pasa sobre el botón */
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el botón "Agregar Usuario" */
+button[id="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos cuando el cursor pasa sobre el botón */
+button[id="submit"]:hover {
+  background-color: #0056b3;
+}
+
