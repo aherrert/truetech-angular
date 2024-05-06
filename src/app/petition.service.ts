@@ -29,6 +29,78 @@ export class PetitionService {
     );
   }
 
+  enviarRegistro_Admin(formulario_data: any) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para agregar un usuario primero debes de iniciar sesión como Administrador!");
+      this.router.navigate(['/login']);
+      return;
+    }
+    formulario_data.token = token;
+    this.conexHttp.post('/usuario/registro_admin', formulario_data).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("Registro", respuesta);
+          alert("¡Registro exitoso por el Administrador!");
+          this.router.navigate(['/admin']);
+        }
+      },
+      (error: any) => {
+        console.error("Error en la solicitud:", error);
+        let errorMessage = "Ocurrió un error en el servidor.";
+
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        } else if (error.status === 0) {
+          errorMessage = "No se pudo conectar al servidor. Por favor, compruebe su conexión a internet.";
+        } else if (error.status === 401) {
+          errorMessage = "No tienes permiso para realizar esta acción.";
+        } else if (error.status === 403) {
+          errorMessage = "El token ha expirado.";
+          this.router.navigate(['/admin']);
+        }
+        alert(errorMessage);
+      }
+    );
+  }
+
+  eliminarUsuarios(formulario_data: any) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para eliminar un usuario primero debes de iniciar sesión como Administrador!");
+      this.router.navigate(['/login']);
+      return;
+    }
+    formulario_data.token = token;
+    this.conexHttp.post('/usuario/borrar', formulario_data).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("Registro", respuesta);
+          alert("¡Usuario eliminado por el Administrador!");
+          this.router.navigate(['/admin']);
+        }
+      },
+      (error: any) => {
+        console.error("Error en la solicitud:", error);
+        let errorMessage = "Ocurrió un error en el servidor.";
+
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        } else if (error.status === 0) {
+          errorMessage = "No se pudo conectar al servidor. Por favor, compruebe su conexión a internet.";
+        } else if (error.status === 401) {
+          errorMessage = "No tienes permiso para realizar esta acción.";
+        } else if (error.status === 403) {
+          errorMessage = "El token ha expirado.";
+          this.router.navigate(['/admin']);
+        }
+        alert(errorMessage);
+      }
+    );
+  }
+
   enviarIniciosesion(formulario_data: any) {
     this.conexHttp.post('/usuario/login', formulario_data).subscribe(
       (respuesta: any) => {
@@ -58,7 +130,7 @@ export class PetitionService {
                 this.router.navigate(['/pagina-empleado-software']);
                 break;
               case 1:
-                this.router.navigate(['/pagina-administrador']);
+                this.router.navigate(['/admin']);
                 break;
               default:
                 this.router.navigate(['/pagina-por-defecto']);
@@ -113,6 +185,11 @@ export class PetitionService {
     );
   }
 
+  obtenerUsuarios(): Observable<any> {
+    return this.conexHttp.get<any>('/usuario/tabla_Admin');
+  }
+
+
   enviarIncidencia(formulario_data: any) {
     this.conexHttp.post('incidencia/registrar', formulario_data).subscribe(
       (respuesta: any) => {
@@ -129,7 +206,7 @@ export class PetitionService {
     );
   }
 
-  obtenerUsuarios(): Observable<any> {
+  obtenerIncidencias(): Observable<any> {
     return this.conexHttp.get<any>('incidencias/ver');
   }
 
