@@ -96,7 +96,7 @@ input[type="email"] {
     box-sizing: border-box;
     transition: border-color 0.3s ease;
     /* Transición suave del color del borde */
-    
+
     /* Centrado horizontal */
     margin: 0 auto;
 }
@@ -162,26 +162,73 @@ button[type="submit"]:hover {
 
 /* Animación para ocultar el formulario */
 img {
-    width: 30px; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 30px;
+    /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
 }
 
 /* Estilos para mensajes de error */
 .text-danger {
-    color: #dc3545; /* Color rojo */
-    font-size: 0.875rem; /* Tamaño de fuente más pequeño */
-    margin-top: 0.25rem; /* Margen superior */
+    color: #dc3545;
+    /* Color rojo */
+    font-size: 0.875rem;
+    /* Tamaño de fuente más pequeño */
+    margin-top: 0.25rem;
+    /* Margen superior */
 }
 
 /* Estilos para resaltar campos inválidos */
 input:invalid,
 textarea:invalid {
-    border-color: black; /* Color de borde rojo */
+    border-color: black;
+    /* Color de borde rojo */
 }
 
 /* Opcional: Estilos para resaltar campos inválidos al enfocar */
 input:focus:invalid,
 textarea:focus:invalid {
-    border-color: black; /* Cambiar el color de borde al enfocar */
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); /* Agregar una sombra al enfocar */
+    border-color: black;
+    /* Cambiar el color de borde al enfocar */
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    /* Agregar una sombra al enfocar */
+}
+
+/* Contenedor principal de las incidencias */
+.incidencias-container {
+    display: flex; /* Utilizamos flexbox para controlar la disposición de los contenedores */
+    flex-wrap: wrap; /* Permite que los contenedores se envuelvan si no caben en una sola fila */
+    justify-content: flex-start; /* Alinea los contenedores a la izquierda */
+  }
+  
+  /* Contenedor para cada incidencia */
+  .incidencia-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 50px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);    
+    border-radius: 5px;
+    width: calc(33.33% - 20px); /* Calculamos el ancho de cada contenedor para que queden 3 en una fila */
+    margin-right: 20px; /* Añadimos un margen a la derecha para separar los contenedores */
+}
+  
+  /* Ajustamos los estilos para la imagen para mantener la proporción */
+  .incidencia-image {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  
+
+
+/* Estilo para imágenes cargadas dinámicamente */
+.dynamic-image {
+    /* Ajusta el tamaño de la imagen según tus preferencias */
+    width: 300px;
+    /* Ancho */
+    height: 300px;
+    /* Altura ajustada automáticamente para mantener la proporción */
+    /* Agrega otros estilos según sea necesario */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

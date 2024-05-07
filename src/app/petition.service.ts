@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -189,23 +189,75 @@ export class PetitionService {
     return this.conexHttp.get<any>('/usuario/tabla_Admin');
   }
 
+  obtenerIncidenciasCliente(token: string): Observable<any> {
+    // Construir los encabezados de la solicitud con el token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-  enviarIncidencia(formulario_data: any) {
-    this.conexHttp.post('incidencia/registrar', formulario_data).subscribe(
+    // Realizar la solicitud HTTP con los encabezados
+    return this.http.get<any>('/incidencia/ver-cliente', { headers });
+  }
+
+
+
+  enviarIncidencia(incidenciaData: any) {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
+  
+    // Verificar si el token está presente en el localStorage
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para enviar una incidencia debes iniciar sesión!");
+      this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+      return;
+    }
+  
+    // Agregar el token y el id_cargo al objeto de datos de la incidencia
+    incidenciaData.token = token;
+    incidenciaData.id_cargo = '2'; // Establecer el id_cargo en 2
+  
+    // Log de los datos que se están enviando
+    console.log("Datos a enviar:", incidenciaData);
+  
+    // Crear un FormData para enviar datos y archivos
+    const formData = new FormData();
+    formData.append('email', incidenciaData.email);
+    formData.append('asunto_reparacion', incidenciaData.asunto_reparacion);
+    formData.append('mensaje_reparacion', incidenciaData.mensaje_reparacion);
+    formData.append('imagen', incidenciaData.imagen); // Agregar la imagen al FormData
+    formData.append('token', token); // Agregar el token al FormData
+    formData.append('id_cargo', '2'); // Agregar el id_cargo al FormData
+  
+    // Realizar la solicitud HTTP con los datos de la incidencia
+    this.conexHttp.post('incidencia/registrar', formData).subscribe(
       (respuesta: any) => {
         if (respuesta.status === 'OK') {
-          console.log("Registro", respuesta);
+          console.log("Incidencia", respuesta);
+          alert("¡Incidencia creada exitosamente!");
+
         } else {
           alert("Ocurrió un error al intentar registrar. Por favor, inténtalo de nuevo más tarde.");
         }
       },
       (error) => {
         console.error("Registro", error);
-        console.log("Usuario existente con el mismo correo electrónico");
+        let errorMessage = "Error al enviar la incidencia";
+  
+        if (error.status === 401) {
+          errorMessage = "Acceso no autorizado. Por favor, inicia sesión.";
+        } else if (error.status === 403) {
+          errorMessage = "El token ha expirado o es inválido.";
+          this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+        } else {
+          errorMessage = "Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.";
+        }
+  
+        alert(errorMessage);
       }
     );
   }
-
+  
   obtenerIncidencias(): Observable<any> {
     return this.conexHttp.get<any>('incidencias/ver');
   }
