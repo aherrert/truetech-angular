@@ -1,0 +1,23 @@
+<div class="login-box">
+    <!-- Heading -->
+    <h4 class="text-center mb-4">
+        Recuperar Contraseña
+    </h4>
+    <!-- Subheading -->
+    <p class="text-center text-muted mb-5">
+        Complete el siguiente formulario para recir un correo para que puedas canviar la contraseña.</p>
+    <form #loginForm="ngForm" (ngSubmit)="enviarcorreo()">
+        <label for="correo">Correo Electrónico</label>
+        <br>
+        <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" class="form_input" required
+            email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="">
+
+        <p></p>
+        <span [hidden]="loginForm.controls['email'].valid || !loginForm.controls['email'].dirty">Correo
+            electrónico inválido</span>
+
+
+        
+        <h2><button type="submit" >enviar correo</button></h2>
+    </form>
+</div>
