@@ -1,0 +1,27 @@
+<div class="chat-container" *ngIf="showChatbot">
+    <div class="close-button-container">
+      <button class="close-button" (click)="closeChatbot()">X</button>
+    </div>
+   
+    <!-- Mensajes del chat -->
+    <div *ngIf="nombreIngresado && !mostrarBotonesPreguntas">
+      <div *ngFor="let message of messages.slice().reverse()" class="message" [ngClass]="{'user': message.sender === 'user', 'bot': message.sender === 'bot'}">
+        {{ message.content }}
+      </div>
+      <button (click)="mostrarPreguntasFrecuentes()">Dudas sobre la página web</button>
+    </div>
+   
+    <!-- Campo de entrada para el nombre -->
+    <div *ngIf="!nombreIngresado || mostrarBotonesPreguntas" class="nombre-input">
+      <input *ngIf="!nombreIngresado" type="text" [(ngModel)]="nombre" placeholder="Escribe tu nombre">
+      <button *ngIf="!nombreIngresado" (click)="ingresarNombre()">Ingresar</button>
+    </div>
+   
+    <!-- Preguntas frecuentes -->
+    <div *ngIf="nombreIngresado && mostrarBotonesPreguntas" class="preguntas-frecuentes">
+      <div *ngFor="let pregunta of preguntasFrecuentes">
+        <button *ngIf="pregunta.seleccionada" (click)="mostrarRespuesta(pregunta)">{{ pregunta.pregunta }}</button>
+        <div *ngIf="pregunta.seleccionada && pregunta.mostrarRespuesta">{{ pregunta.respuesta }}</div>
+      </div>
+    </div>
+  </div>
