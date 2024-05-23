@@ -8,6 +8,8 @@ import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { SoftwareComponent } from './tickets/software/software.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
+
+import { ChatbotComponent } from './chatbot/chatbot.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
 
@@ -22,8 +24,12 @@ const routes: Routes = [
   { path: 'tickets/software', component: SoftwareComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminComponent},
+
+  { path: 'chatbot',component: ChatbotComponent }
+
   { path: 'resetpassword', component: ResetpasswordComponent },
   { path: 'enviarcorreo', component: EnviarcorreoComponent },
+
 
 
 ];
