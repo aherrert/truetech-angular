@@ -114,7 +114,9 @@ export class PetitionService {
             const tokenInfo = this.parseJwt(respuesta.token);
             const rol = tokenInfo.rol;
             const nombreUsuario = tokenInfo.nombre;
+            const email = tokenInfo.email; // Suponiendo que el email se encuentra en una propiedad llamada 'email' en el token
 
+            localStorage.setItem('email', email); 
             localStorage.setItem('nombreUsuario', nombreUsuario); // Aquí se almacena el nombre de usuario
             // Establecer el estado de autenticación como autenticado
 

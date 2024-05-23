@@ -20,6 +20,8 @@ import { HardwareWorkerComponent } from './tickets/hardware-worker/hardware-work
 import { SoftwareWorkerComponent } from './tickets/software-worker/software-worker.component';
 import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     SoftwareWorkerComponent,
     EnviarcorreoComponent,
     ResetpasswordComponent,
+    ChatbotComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

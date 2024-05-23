@@ -18,9 +18,9 @@
     transform: translate(-50%, -50%);
     z-index: 1;
     background-color: transparent; /* Hace el botón transparente */
-    font-size: 22px; 
-    font-family: Abril Fatface; 
-    font-weight: 400; 
+    font-size: 22px;
+    font-family: Abril Fatface;
+    font-weight: 400;
     color: #ffffff; /* Color de la tipografía */
     border: 2px solid #ffffff; /* Borde blanco */
     padding: 10px 20px; /* Ajusta el padding según sea necesario */
@@ -30,9 +30,13 @@
     display: inline-block;
     height: 500px;
 }
+#chatbot{
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 545px;
+}
 #botonCentrado:hover {
     /* background-color: rgba(255, 255, 255, 0.3); Cambia el fondo a semitransparente en hover */
     background-color: white;
     color:black; /* Cambia el color del texto en hover */
 }
-
