@@ -1,3 +1,5 @@
+   
+
 <div id="fondo" class="py-5">
   <div class="col">
       <!-- Utiliza solo la primera imagen de fondo -->
@@ -9,15 +11,40 @@
       </a>
       <a class="login" routerLink="/login" *ngIf="!notLogged">
         <button id="botonCentrado" class="btn btn-primary">LOGOUT</button>
-      </a>   
-      <div class="content">
-        <button class="btn btn-primary" id="chatbot" (click)="toggleChatbotVisibility()">Abrir Chatbot</button>
-
-        <!-- Contenido del chatbot -->
-        <div *ngIf="showChatbot">
-          <!-- Aquí deberías incluir el componente Chatbot o su contenido directamente -->
-          <app-chatbot (close)="toggleChatbotVisibility()"></app-chatbot>
-        </div>
-      </div>
+      </a>      
   </div>
 </div>
+
+
+    <!-- 
+    <div id="textaboutus" class="bg-light p-5">
+      <form method="POST">
+        <h1><b>ABOUT US</b></h1>
+        <div>
+          <div>
+            {{ datos.aboutUsText }}
+          </div>
+        </div>
+      </form>
+    
+    </div>
+    
+    <div id="textcontacto" class="bg-gradient-success">
+      <form method="POST">
+        <h1><b>CONTACT</b></h1>
+        <div *ngFor="let campo of datos.camposFormularioContacto">
+          <div>
+            <input type="{{ campo.tipo }}" class="form-control mb-3" [placeholder]="campo.placeholder" [name]="campo.nombre">
+          </div>
+        </div>
+    
+        <input type="submit" value="Submit" class="btn btn-primary" name="botom">
+      </form>
+    </div> -->
+    
+
+    
+    
+
+    
+    
