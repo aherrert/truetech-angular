@@ -18,6 +18,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { MessageComponent } from './message/message.component';
+import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { MessageComponent } from './message/message.component';
     AdminComponent,
     ChatbotComponent,
     MessageComponent,
+    EnviarcorreoComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     BrowserModule,
