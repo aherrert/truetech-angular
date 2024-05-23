@@ -81,12 +81,4 @@ export class SoftwareComponent implements OnInit {
       }
     );
   }
-  
-
-
-
-  editarIncidencia() {
-    // Implementa la lógica para editar una incidencia si es necesario
-  }
-
 }

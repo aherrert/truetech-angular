@@ -41,6 +41,10 @@
     <button type="submit" (click)="toggleFormulario()">Abrir ticket</button>
   </div>
 </div>
+<div class="title-box">
+  <h2 class="incidencias-title">Historial de Incidencias de Software</h2>
+</div>
+
 <div class="incidencias-container">
   <div *ngFor="let incidencia of incidencias" class="incidencia-container">
     <div class="incidencia-details">ID: {{ incidencia.id }}</div>
