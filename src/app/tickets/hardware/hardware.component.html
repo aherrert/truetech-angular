@@ -1,102 +1,65 @@
 <div class="login-box" [ngClass]="{'mostrar': mostrarFormulario}">
-    <!-- Estado -->
-    <div class="estado" [ngClass]="{'activo': incidenciaEnviada}">Estado: {{ incidenciaEnviada ? 'Activo' : 'Sin
-      Incidencias' }}</div>
-    <!-- Botón para ocultar el formulario -->
-    <button class="cerrar-formulario" (click)="toggleFormulario()" [disabled]="!mostrarFormulario"></button>
-    <!-- Heading -->
-    <h4 class="titulo">Abrir Incidencia de Ticket</h4>
-    <form *ngIf="mostrarFormulario" class="slide-in" (ngSubmit)="enviarIncidencia()" #formulario="ngForm">
-      <p class="subtitulo">Complete el siguiente formulario para abrir una incidencia de ticket.</p>
-      <div class="form-group">
-        <label for="nombreCompleto">Nombre Completo</label>
-        <input type="text" name="nombre_completo" id="nombre_completo" [(ngModel)]="formulario_data.nombre_completo"
-          required pattern="[A-Za-z\s]{3,100}">
-        <p></p>
-        <span [hidden]="formulario.controls['nombre_completo'].valid || !formulario.controls['nombre_completo'].dirty"
-          class="text-danger">El nombre debe tener entre 3 y 100 letras</span>
-      </div>
-      <div class="form-group">
-        <label for="correoElectronico">Correo Electrónico</label>
-        <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" required>
-        <p></p>
-        <span [hidden]="formulario.controls['email'].valid || !formulario.controls['email'].dirty" class="text-danger">Por
-          favor, introduzca un correo electrónico válido</span>
-      </div>
-      <div class="form-group">
-        <label for="asunto">Asunto</label>
-        <input type="text" name="asunto_reparacion" id="asunto_reparacion" [(ngModel)]="formulario_data.asunto_reparacion"
-          required pattern="[A-Za-z0-9\s]{5,100}">
-        <p></p>
-        <span [hidden]="formulario.controls['asunto_reparacion'].valid || !formulario.controls['asunto_reparacion'].dirty"
-          class="text-danger">El asunto debe tener entre 5 y 100 caracteres alfanuméricos</span>
-      </div>
-      <div class="form-group">
-        <label for="mensaje">Mensaje</label>
-        <textarea name="mensaje_reparacion" id="mensaje_reparacion" [(ngModel)]="formulario_data.mensaje_reparacion"
-          required></textarea>
-        <p></p>
-        <span
-          [hidden]="formulario.controls['mensaje_reparacion'].valid || !formulario.controls['mensaje_reparacion'].dirty"
-          class="text-danger">Este campo es obligatorio</span>
-      </div>
-      <div class="form-group">
-        <label for="imagen" style="display: block; text-align: left;">Adjuntar Imagen</label>
-        <input type="file" name="imagen" id="imagen" accept="image/*" (change)="onFileSelected($event)" required>
-        <span *ngIf="formulario.controls['imagen'].errors?.['required'] && formulario.controls['imagen'].touched"
-        class="text-danger">Por favor, seleccione una imagen</span>    
-      </div>
-      <button type="submit" [disabled]="!formulario.valid">Abrir Incidencia</button>
-    </form>
-    <!-- Mensaje de incidencia enviada -->
-    <div class="caja-alargada" *ngIf="incidenciaEnviada">
-      Incidencia enviada <img src="../../../assets/imagenes/correcto.png" alt="Incidencia enviada">
+  <!-- Estado -->
+  <div class="estado" [ngClass]="{'activo': incidenciaEnviada}">Estado: {{ incidenciaEnviada ? 'Activo' : 'Sin Incidencias' }}</div>
+  <!-- Botón para ocultar el formulario -->
+  <button class="cerrar-formulario" (click)="toggleFormulario()" [disabled]="!mostrarFormulario"></button>
+  <!-- Heading -->
+  <h4 class="titulo">Abrir Incidencia de Ticket</h4>
+  <form *ngIf="mostrarFormulario" class="slide-in" (ngSubmit)="enviarIncidencia2()" #formulario="ngForm" enctype="multipart/form-data">
+    <p class="subtitulo">Complete el siguiente formulario para abrir una incidencia de ticket.</p>
+    <div class="form-group">
+      <label for="correoElectronico">Correo Electrónico</label>
+      <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" required>
+      <p></p>
+      <span [hidden]="formulario.controls['email'].valid || !formulario.controls['email'].dirty" class="text-danger">Por favor, introduzca un correo electrónico válido</span>
     </div>
-  
-    <div class="caja-alargada" *ngIf="!mostrarFormulario && !incidenciaEnviada">
-      <button type="submit" (click)="toggleFormulario()">Abrir ticket</button>
+    <div class="form-group">
+      <label for="asunto">Asunto</label>
+      <input type="text" name="asunto_reparacion" id="asunto_reparacion" [(ngModel)]="formulario_data.asunto_reparacion" required pattern="[A-Za-z0-9\s]{5,100}">
+      <p></p>
+      <span [hidden]="formulario.controls['asunto_reparacion'].valid || !formulario.controls['asunto_reparacion'].dirty" class="text-danger">El asunto debe tener entre 5 y 100 caracteres alfanuméricos</span>
+    </div>
+    <div class="form-group">
+      <label for="mensaje">Mensaje</label>
+      <textarea name="mensaje_reparacion" id="mensaje_reparacion" [(ngModel)]="formulario_data.mensaje_reparacion" required></textarea>
+      <p></p>
+      <span [hidden]="formulario.controls['mensaje_reparacion'].valid || !formulario.controls['mensaje_reparacion'].dirty" class="text-danger">Este campo es obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="imagen" style="display: block; text-align: left;">Adjuntar Imagen</label>
+      <input type="file" name="imagen" id="imagen" accept="image/*" (change)="onFileSelected($event)" required>
+      <span *ngIf="formulario.controls['imagen'].errors?.['required'] && formulario.controls['imagen'].touched" class="text-danger">Por favor, seleccione una imagen</span>
+    </div>
+    <button type="submit" [disabled]="!formulario.valid">Abrir Incidencia</button>
+  </form>
+  <!-- Mensaje de incidencia enviada -->
+  <div class="caja-alargada" *ngIf="incidenciaEnviada">
+    Incidencia enviada <img src="../../../assets/imagenes/correcto.png" alt="Incidencia enviada">
+  </div>
+
+  <div class="caja-alargada" *ngIf="!mostrarFormulario && !incidenciaEnviada">
+    <button type="submit" (click)="toggleFormulario()">Abrir ticket</button>
+  </div>
+</div>
+<div class="title-box">
+  <h2 class="incidencias-title">Historial de Incidencias de Software</h2>
+</div>
+
+<div class="incidencias-container">
+  <div *ngFor="let incidencia of incidencias" class="incidencia-container">
+    <div class="incidencia-details">ID: {{ incidencia.id }}</div>
+    <div class="incidencia-details">Asunto: {{ incidencia.asunto_reparacion }}</div>
+    <div class="incidencia-details">Mensaje: {{ incidencia.mensaje_reparacion }}</div>
+    <div class="incidencia-details">Estado: {{ incidencia.estado }}</div>
+    <div class="incidencia-details">
+      <!-- Agrega una clase 'dynamic-image' para identificar las imágenes cargadas dinámicamente -->
+      Imagen:<br><img [src]="incidencia.imagen" alt="Imagen de la incidencia" class="incidencia-image dynamic-image">
     </div>
   </div>
-  <p></p><button (click)="obtenerUsuarios()">Obtener Usuarios</button>
-  
-  <div *ngIf="usuarios">
-    <h2>Listado de Usuarios</h2>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nombre Completo</th>
-          <th scope="col">Email</th>
-          <th scope="col">Asunto</th>
-          <th scope="col">Mensaje</th>
-          <th scope="col">Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let usuario of usuarios">
-          <td>{{ usuario.id }}</td>
-          <td>{{ usuario.nombre_completo }}</td>
-          <td>{{ usuario.email }}</td>
-          <td>{{ usuario.asunto_reparacion }}</td>
-          <td>{{ usuario.mensaje_reparacion }}</td>
-          <td>{{ usuario.estado }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-  <label for="idTicket">Seleccionar ID del Ticket:</label>
-  <input type="number" min="0" id="idTicket" name="idTicket" [(ngModel)]="id">
-  
-  <label for="estadoTicket">Seleccionar Estado del Ticket:</label>
-  <select id="estadoTicket" name="estadoTicket" [(ngModel)]="nuevoEstado">
-    <option value="abierto">Abierto</option>
-    <option value="en proceso">En Proceso</option>
-    <option value="cerrado">Cerrado</option>
-    <option value="verificar">Verificar</option>
-  </select>
-  
-  
-  
-  <!-- Botón de enviar para actualizar la incidencia -->
-  <button (click)="editarIncidencia()">Enviar</button>
+</div>
+
+
+
+
+
+
