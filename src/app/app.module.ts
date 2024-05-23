@@ -16,6 +16,8 @@ import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { Header2Component } from './header2/header2.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
+import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { AdminComponent } from './admin/admin.component';
     Header2Component,
     ContactComponent,
     AdminComponent,
+    EnviarcorreoComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     BrowserModule,
