@@ -23,9 +23,12 @@ const routes: Routes = [
   { path: 'tickets/software', component: SoftwareComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminComponent},
+
   { path: 'chatbot',component: ChatbotComponent }
+
   { path: 'resetpassword', component: ResetpasswordComponent },
   { path: 'enviarcorreo', component: EnviarcorreoComponent },
+
 
 
 ];
