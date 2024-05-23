@@ -16,6 +16,8 @@ import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { Header2Component } from './header2/header2.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import { AdminComponent } from './admin/admin.component';
     Header2Component,
     ContactComponent,
     AdminComponent,
+    ChatbotComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule // Agrega FormsModule aquí
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

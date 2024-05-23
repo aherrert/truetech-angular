@@ -8,6 +8,7 @@ import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { SoftwareComponent } from './tickets/software/software.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -18,8 +19,8 @@ const routes: Routes = [
   { path: 'tickets/hardware', component: HardwareComponent },
   { path: 'tickets/software', component: SoftwareComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'admin', component: AdminComponent}
-
+  { path: 'admin', component: AdminComponent},
+  { path: 'chatbot',component: ChatbotComponent }
 
 ];
 

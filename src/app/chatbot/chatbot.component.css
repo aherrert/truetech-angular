@@ -1,0 +1,85 @@
+.chat-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 20%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow-y: auto;
+  z-index: 1;
+}
+.close-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close-button {
+  padding: 0; /* Elimina el relleno para que la "X" esté más cerca */
+  background-color: transparent; /* Elimina el color de fondo */
+  border: none; /* Elimina el borde */
+  cursor: pointer;
+  /* Otros estilos para el botón "X" según tus preferencias */
+}
+  .message {
+    margin: 5px 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+  
+  .user {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .bot {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+  }
+  
+  .nombre-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-top: 22px;
+  }
+  
+  .nombre-input input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .nombre-input button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .preguntas-frecuentes {
+    margin-top: 10px;
+  }
+  
+  .preguntas-frecuentes button {
+    margin-bottom: 5px;
+  }
+  
+  .preguntas-frecuentes div {
+    margin: 5px 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+  
