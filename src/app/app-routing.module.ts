@@ -10,6 +10,9 @@ import { HardwareWorkerComponent } from './tickets/hardware-worker/hardware-work
 import { SoftwareWorkerComponent } from './tickets/software-worker/software-worker.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -22,7 +25,9 @@ const routes: Routes = [
   { path: 'tickets/hardware-worker', component: HardwareWorkerComponent },
   { path: 'tickets/software-worker', component: SoftwareWorkerComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'admin', component: AdminComponent}
+  { path: 'admin', component: AdminComponent},
+  { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'enviarcorreo', component: EnviarcorreoComponent },
 
 
 ];

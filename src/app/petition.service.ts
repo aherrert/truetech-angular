@@ -466,4 +466,39 @@ export class PetitionService {
       throw new Error('Error al decodificar el token.');
     }
   }
+  enviarResetpassword(formulario_data: any) {
+    this.conexHttp.post('/usuario/resetpassword', formulario_data).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("resetpassword", respuesta);
+          alert("resetpassword exitoso!");
+          this.router.navigate(['/resetpassword']);
+        } else {
+          alert("Ocurrió un error al intentar resetpassword. Por favor, inténtalo de nuevo más tarde.");
+        }
+      },
+      (error) => {
+        console.error("resetpassword", error);
+        alert("Usuario existente con el mismo correo electrónico");
+      }
+    );
+  }
+
+  enviarcorreo(formulario_data: any) {
+    this.conexHttp.post('/usuario/enviarcorreo', formulario_data).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("enviar correo", respuesta);
+          alert("enviar correo exitoso!");
+          this.router.navigate(['/enviarcorreo']);
+        } else {
+          alert("Ocurrió un error al intentar enviar correo. Por favor, inténtalo de nuevo más tarde.");
+        }
+      },
+      (error) => {
+        console.error("enviar correo", error);
+        alert("No se ha podido enviar el correo.");
+      }
+    );
+  }
 }

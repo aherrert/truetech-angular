@@ -18,6 +18,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
 import { HardwareWorkerComponent } from './tickets/hardware-worker/hardware-worker.component';
 import { SoftwareWorkerComponent } from './tickets/software-worker/software-worker.component';
+import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { SoftwareWorkerComponent } from './tickets/software-worker/software-work
     AdminComponent,
     HardwareWorkerComponent,
     SoftwareWorkerComponent,
+    EnviarcorreoComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     BrowserModule,
