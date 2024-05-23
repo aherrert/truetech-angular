@@ -7,7 +7,6 @@ import { DatosService } from '../datos.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  showChatbot: boolean = false;
   datos: any;
   notLogged = false;
 
@@ -24,9 +23,5 @@ export class HomeComponent implements OnInit {
     if (!nombreUsuario) {
       this.notLogged = true;
     }
-  }
-
-  toggleChatbotVisibility() {
-    this.showChatbot = !this.showChatbot;
   }
 }

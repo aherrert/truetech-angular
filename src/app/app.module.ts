@@ -16,13 +16,8 @@ import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { Header2Component } from './header2/header2.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
-
-import { ChatbotComponent } from './chatbot/chatbot.component';
-import { MessageComponent } from './message/message.component';
-
 import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-
 
 @NgModule({
   declarations: [
@@ -38,19 +33,14 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     Header2Component,
     ContactComponent,
     AdminComponent,
-
-    ChatbotComponent,
-    MessageComponent,
-
     EnviarcorreoComponent,
     ResetpasswordComponent,
-
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule // Agrega FormsModule aquí
   ],
   providers: [],
   bootstrap: [AppComponent]
