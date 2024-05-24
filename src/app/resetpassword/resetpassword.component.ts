@@ -12,7 +12,8 @@ export class ResetpasswordComponent {
   constructor(private resetpasswordService: PetitionService) { 
     this.formulario_data = {
       email: '',
-      password: ''
+      password: '',
+      id: ''
     };
   }
 
