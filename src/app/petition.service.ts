@@ -115,8 +115,12 @@ export class PetitionService {
             const rol = tokenInfo.rol;
             const nombreUsuario = tokenInfo.nombre;
             const email = tokenInfo.email; // Suponiendo que el email se encuentra en una propiedad llamada 'email' en el token
+            const nombre = tokenInfo.nombre; 
+            const apellidos = tokenInfo.apellidos; 
 
             localStorage.setItem('email', email); 
+            localStorage.setItem('nombre', nombre); 
+            localStorage.setItem('apellidos', apellidos); 
             localStorage.setItem('nombreUsuario', nombreUsuario); // Aquí se almacena el nombre de usuario
             // Establecer el estado de autenticación como autenticado
 
@@ -154,38 +158,42 @@ export class PetitionService {
     );
   }
 
-  enviarEditarPerfil(formulario_data: any) {
+  editarContrasena(formulario_data: any) {
     // Obtener el token del localStorage
     const token = localStorage.getItem('token');
 
     // Verificar si el token está presente en el localStorage
     if (!token) {
-
-      console.error("Token no encontrado en el localStorage");
-      alert("¡Para editar el perfil primero debes de inciar sesión!");
-      this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
-      return;
+        console.error("Token no encontrado en el localStorage");
+        alert("¡Para editar el perfil primero debes de inciar sesión!");
+        this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+        return;
     }
+
     // Agregar el token al objeto de datos del formulario
     formulario_data.token = token;
 
     // Enviar los datos del formulario al backend junto con el token
-    this.conexHttp.post('/usuario/editarPerfil', formulario_data).subscribe(
-      (respuesta: any) => {
-        console.log("Editar Perfil", respuesta);
-        alert("¡Perfil editado correctamente!");
-      },
-      (error) => {
-        console.error("Editar Perfil", error);
-        if (error.status === 401) { // Token expirado o inválido
-          alert("¡El token es inválido! Por favor, inicia sesión nuevamente.");
-          this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
-        } else {
-          alert("Error de usuario no encontrado o que los datos no son válidos");
+    this.conexHttp.post('/usuario/cambiarContrasena', formulario_data).subscribe(
+        (respuesta: any) => {
+            console.log("Editar Perfil", respuesta);
+            alert("Contraseña editada correctamente!");
+        },
+        (error) => {
+            console.error("Editar Perfil", error);
+           if (error.status === 400) { // Datos incompletos o inválidos
+                alert("Error: Datos incompletos o inválidos");
+            } else if (error.status === 404) { // Usuario no encontrado
+                alert("Error: Usuario no encontrado");
+            } else if (error.status === 401) { // Contraseña actual incorrecta
+                alert("Error: Contraseña actual incorrecta");
+            } else {
+                alert("Error: Ha ocurrido un error inesperado");
+            }
         }
-      }
     );
-  }
+}
+
 
   obtenerUsuarios(): Observable<any> {
     return this.conexHttp.get<any>('/usuario/tabla_Admin');

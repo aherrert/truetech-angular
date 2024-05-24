@@ -22,6 +22,7 @@ import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { MessageComponent } from './message/message.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MessageComponent } from './message/message.component';
     ResetpasswordComponent,
     ChatbotComponent,
     MessageComponent,
+    EditPasswordComponent,
   ],
   imports: [
     BrowserModule,
