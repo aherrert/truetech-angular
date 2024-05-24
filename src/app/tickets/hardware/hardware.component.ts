@@ -11,6 +11,7 @@ export class HardwareComponent {
   formulario_data: any;
   incidenciaEnviada: boolean = false;
   incidencias: any[] = []; // Variable para almacenar las incidencias
+  email: string | null = ''; // Variable para almacenar el correo del usuario
 
   constructor(private enviarIncidenciaService: PetitionService) {
     this.formulario_data = {
@@ -22,6 +23,8 @@ export class HardwareComponent {
   }
 
   ngOnInit(): void {
+    this.email = localStorage.getItem('email');
+
     // Obtener el token del localStorage
     const token = localStorage.getItem('token');
 
@@ -50,7 +53,7 @@ export class HardwareComponent {
 
   enviarIncidencia2() {
     const incidenciaData = {
-      email: this.formulario_data.email,
+      email: this.email,
       asunto_reparacion: this.formulario_data.asunto_reparacion,
       mensaje_reparacion: this.formulario_data.mensaje_reparacion,
       imagen: this.formulario_data.imagen // Asumiendo que la imagen es una URL o un Blob

@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { HardwareComponent } from './tickets/hardware/hardware.component';
 import { SoftwareComponent } from './tickets/software/software.component';
 import { HardwareWorkerComponent } from './tickets/hardware-worker/hardware-worker.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'edit/password', component: EditPasswordComponent},
   { path: 'tickets/hardware', component: HardwareComponent },
   { path: 'tickets/software', component: SoftwareComponent },
   { path: 'tickets/hardware-worker', component: HardwareWorkerComponent },
