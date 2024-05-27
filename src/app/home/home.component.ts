@@ -28,5 +28,13 @@ export class HomeComponent implements OnInit {
  
   toggleChatbotVisibility() {
     this.showChatbot = !this.showChatbot;
-  }
+    const botonCentrado = document.getElementById('botonCentrado');
+    if (botonCentrado) {
+        if (this.showChatbot) {
+            botonCentrado.classList.add('opened');
+        } else {
+            botonCentrado.classList.remove('opened');
+        }
+    }
+}
 }

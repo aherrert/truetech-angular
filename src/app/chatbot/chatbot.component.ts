@@ -16,14 +16,12 @@ export class ChatbotComponent {
     {
       pregunta: "¿Cuál es tu horario de atención?",
       respuesta: "Nuestro horario de atención es de lunes a viernes de 9:00 a 18:00.",
-      seleccionada: false,
-      mostrarRespuesta: false
+      seleccionada: false
     },
     {
       pregunta: "¿Cómo puedo contactaros?",
       respuesta: "Puedes contactarnos a través de nuestro correo electrónico support@truetech.com o por teléfono al +123456789.",
-      seleccionada: false,
-      mostrarRespuesta: false
+      seleccionada: false
     }
   ];
  
@@ -39,16 +37,12 @@ export class ChatbotComponent {
  
   mostrarPreguntasFrecuentes() {
     this.preguntasFrecuentes.forEach(pregunta => {
-      pregunta.seleccionada = true;
+      pregunta.seleccionada = false;
     });
     this.mostrarBotonesPreguntas = true;
   }
  
-  mostrarRespuesta(pregunta: any) {
-    pregunta.mostrarRespuesta = true;
-  }
- 
-  closeChatbot() {
-    this.showChatbot = false; // Oculta el chatbot cuando se hace clic en el botón "X"
+  toggleRespuesta(pregunta: any) {
+    pregunta.seleccionada = !pregunta.seleccionada;
   }
 }
