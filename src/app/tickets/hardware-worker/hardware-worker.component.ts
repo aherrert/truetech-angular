@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PetitionService } from '../../petition.service';
-
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-hardware-worker',
@@ -9,16 +10,18 @@ import { PetitionService } from '../../petition.service';
 })
 export class HardwareWorkerComponent {
   incidencias: any[] = []; // Variable para almacenar las incidencias
-  
   id: number | undefined;
   estado: string = '';
-
   id2: number | undefined;
-
   historialIncidencias: any[] = []; // Variable para almacenar el historial de incidencias
   idTicket2: number | undefined;
-  constructor(private editarIncidenciaService: PetitionService) {
+  imgCargar = { cargarsvg: false }; // Definición de la propiedad imgCargar
 
+  constructor(private editarIncidenciaService: PetitionService, private router: Router, private conexHttp: HttpClient, private http: HttpClient) {
+
+  }
+  activarCarga() {
+    this.imgCargar.cargarsvg = true; // Activar la carga
   }
 
   ngOnInit(): void {
@@ -57,12 +60,48 @@ export class HardwareWorkerComponent {
   }
   editarIncidencia2() {
     if (this.id !== undefined && this.estado !== '') {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error("Token no encontrado en el localStorage");
+        alert("¡Para editar la incidencia primero debes iniciar sesión como trabajador!");
+        this.router.navigate(['/login']);
+        return;
+      }
+  
       const formulario_data = {
         id: this.id,
-        estado: this.estado
+        estado: this.estado,
+        token: token // Agregar el token al objeto formulario_data
       };
+  
       console.log('Datos del formulario:', formulario_data); // Agregamos el console.log para verificar los datos antes de enviarlos al servicio
-      this.editarIncidenciaService.editarIncidencia2(formulario_data);
+  
+      this.http.post('/incidencia/actualizar2', formulario_data).subscribe(
+        (respuesta: any) => {
+          console.log("Editar Perfil", respuesta);
+          if (respuesta.status === 'OK') {
+            console.log("Incidencia editada correctamente!");
+            window.location.reload();
+          } 
+          this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
+        },
+        (error) => {
+          console.error("Editar Perfil", error);
+          if (error.status === 400) {
+            alert("No se proporcionó el ID del ticket y el nuevo estado");
+          } else if (error.status === 401) {
+            alert("Token inválido, por favor inicia sesión nuevamente");
+            this.router.navigate(['/login']);
+          } else if (error.status === 403) {
+            alert("No tienes permiso para acceder a esta funcionalidad");
+          } else if (error.status === 404) {
+            alert("No se encontró la incidencia asociada al ID proporcionado");
+          } else {
+            alert("Error desconocido");
+          }
+          this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
+        }
+      );
     }
   }
 
@@ -75,6 +114,7 @@ export class HardwareWorkerComponent {
           console.log("Historial de Incidencias", respuesta);
           // Almacenar el historial de incidencias en la variable
           this.historialIncidencias = respuesta["historial_incidencias"];
+          this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
         },
         (error) => {
           console.error("Error al obtener el historial de incidencias", error);
@@ -83,5 +123,6 @@ export class HardwareWorkerComponent {
     } else {
       console.error('ID de Ticket no proporcionado');
     }
+    this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
   }
 }

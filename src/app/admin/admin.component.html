@@ -56,8 +56,9 @@
                 </select>
             </div>
             <p></p>
-            <button type="submit">Agregar Usuario</button>
+            <button type="submit" (click)="activarCarga()">Agregar Usuario</button>
         </form>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
 
     <div class="form-container">
@@ -66,9 +67,15 @@
         <div>
             <label for="id">ID:</label>
             <input type="number" id="id" name="id" [(ngModel)]="id">
-            <button id="submit" (click)="eliminarUsuarios()">Eliminar Usuario</button>
+            <button id="submit"  (click)="activarCarga()" (click)="eliminarUsuarios()">Eliminar Usuario</button>
         </div>
+        <div *ngIf="errorMessage2" class="error-message2">{{ errorMessage2 }}</div>
         <p></p>
     </div>
-
+    <div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+        <div class="centered-content">
+            <img src="../../assets/animate/svg-loaders/puff.svg" />
+            <h6 style="color:#eee">Cargando...</h6>
+        </div>
+    </div>
 </div>

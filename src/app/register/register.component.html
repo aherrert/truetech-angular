@@ -9,22 +9,28 @@
     <form #registerForm="ngForm" (ngSubmit)="enviarRegistro()">
         <label for="name">Nombre</label>
         <br>
-        <input type="text" name="nombre" id="nombre" [(ngModel)]="formulario_data.nombre" class="form_input" required pattern="[A-Za-z\u00C0-\u017F\s]{3,40}" placeholder="">
+        <input type="text" name="nombre" id="nombre" [(ngModel)]="formulario_data.nombre" class="form_input" required
+            pattern="[A-Za-z\u00C0-\u017F\s]{3,40}" placeholder="">
         <p></p>
-        <span [hidden]="registerForm.controls['nombre'].valid || !registerForm.controls['nombre'].dirty">El nombre entre 3 y 40 carácteres</span>
+        <span [hidden]="registerForm.controls['nombre'].valid || !registerForm.controls['nombre'].dirty">El nombre entre
+            3 y 40 carácteres</span>
 
         <label for="apellidos">Apellidos</label>
         <br>
-        <input type="text" name="apellidos" id="apellidos" [(ngModel)]="formulario_data.apellidos" class="form_input" required pattern="[A-Za-z\u00C0-\u017F\s]{3,50}" placeholder="">
+        <input type="text" name="apellidos" id="apellidos" [(ngModel)]="formulario_data.apellidos" class="form_input"
+            required pattern="[A-Za-z\u00C0-\u017F\s]{3,50}" placeholder="">
         <p></p>
-        <span [hidden]="registerForm.controls['apellidos'].valid || !registerForm.controls['apellidos'].dirty">Los apellidos entre 3 y 50 carácteres </span>
+        <span [hidden]="registerForm.controls['apellidos'].valid || !registerForm.controls['apellidos'].dirty">Los
+            apellidos entre 3 y 50 carácteres </span>
 
         <label for="correo">Correo Electrónico</label>
         <br>
-        <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" class="form_input" required email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="">
+        <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" class="form_input" required
+            email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="">
 
         <p></p>
-        <span [hidden]="registerForm.controls['email'].valid || !registerForm.controls['email'].dirty">Correo electrónico inválido</span>
+        <span [hidden]="registerForm.controls['email'].valid || !registerForm.controls['email'].dirty">Correo
+            electrónico inválido</span>
 
 
         <div class="form_container">
@@ -41,6 +47,14 @@
         <input type="checkbox" id="recordarme-checkbox" class="recordarme-checkbox">
         <label for="recordarme-checkbox" class="recordarme-label">Recordarme</label>
 
-        <h2><button type="submit" [disabled]="!registerForm.form.valid">Regístrate</button></h2>
+        <h2><button type="submit" [disabled]="!registerForm.form.valid" (click)="activarCarga()">Regístrate</button></h2>
     </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+        <div class="centered-content">
+            <img src="../../assets/animate/svg-loaders/puff.svg" />
+            <h6 style="color:#eee">Cargando...</h6>
+        </div>
+    </div>
 </div>

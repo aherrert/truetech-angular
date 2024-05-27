@@ -28,11 +28,19 @@
                     contraseña debe tener al menos 6 caracteres y una letra mayúscula</span>
             </div>
         </div>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
         <input type="checkbox" id="recordarme-checkbox" class="recordarme-checkbox">
         <label for="recordarme-checkbox" class="recordarme-label">Recordarme</label>
 
-        <h2><button type="submit" [disabled]="!loginForm.form.valid">Iniciar Sesión</button></h2>
+        <h2><button type="submit" [disabled]="!loginForm.form.valid" (click)="activarCarga()">Iniciar Sesión</button></h2>
     </form>
     <p>¿No eres miembro todavía? Inscribirse. <a routerLink="../register/" class="enlace-registro">Regístrate</a></p>
     <p><a routerLink="../enviarcorreo/"class="enlace-olvidado">¿Has olvidado la contraseña?</a></p>
+
+    <div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+        <div class="centered-content">
+            <img src="../../assets/animate/svg-loaders/puff.svg" />
+            <h6 style="color:#eee">Cargando...</h6>
+        </div>
+    </div>
 </div>

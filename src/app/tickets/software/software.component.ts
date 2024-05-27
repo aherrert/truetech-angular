@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PetitionService } from '../../petition.service';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-software',
@@ -12,8 +14,11 @@ export class SoftwareComponent implements OnInit {
   incidenciaEnviada: boolean = false;
   incidencias: any[] = []; // Variable para almacenar las incidencias
   email: string | null = ''; // Variable para almacenar el correo del usuario
+  errorMessage: string = ''; // Variable para almacenar el mensaje de error
+  imgCargar = { cargarsvg: false }; // Definición de la propiedad imgCargar
 
-  constructor(private enviarIncidenciaService: PetitionService) {
+
+  constructor(private enviarIncidenciaService: PetitionService, private router: Router, private conexHttp: HttpClient, private http: HttpClient) {
     this.formulario_data = {
       email: '',
       asunto_reparacion: '',
@@ -22,6 +27,10 @@ export class SoftwareComponent implements OnInit {
     };
   }
 
+  activarCarga() {
+    this.imgCargar.cargarsvg = true; // Activar la carga
+  }
+  
   ngOnInit(): void {
     this.email = localStorage.getItem('email');
 
@@ -46,32 +55,78 @@ export class SoftwareComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement && inputElement.files && inputElement.files.length > 0) {
       const file: File = inputElement.files[0];
+      // Verificar el tamaño del archivo
+      if (file.size > 500000) { // 500 KB en bytes
+        alert('La imagen es demasiado grande. Por favor, seleccione una imagen más pequeña de 500KB.');
+        // Limpiar el campo de archivo seleccionado
+        inputElement.value = '';
+        return; // Salir de la función sin asignar la imagen al formulario
+      }
       // Asignar el archivo al formulario_data
       this.formulario_data.imagen = file;
     }
   }
 
   enviarIncidencia() {
-    const incidenciaData = {
-      email: this.email, // Usar el correo electrónico almacenado en la variable 'email'
-      asunto_reparacion: this.formulario_data.asunto_reparacion,
-      mensaje_reparacion: this.formulario_data.mensaje_reparacion,
-      imagen: this.formulario_data.imagen // Asumiendo que la imagen es una URL o un Blob
-    };
-  
-    this.enviarIncidenciaService.enviarIncidencia(incidenciaData);
-    this.mostrarFormulario = false;
-    this.incidenciaEnviada = true;
+    if (!this.formulario_data.imagen) {
+      alert('Por favor, seleccione una imagen.');
+      return; // Salir de la función si no hay una imagen seleccionada
+    }
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para enviar una incidencia debes iniciar sesión!");
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('email', this.email || '');
+    formData.append('asunto_reparacion', this.formulario_data.asunto_reparacion);
+    formData.append('mensaje_reparacion', this.formulario_data.mensaje_reparacion);
+    formData.append('imagen', this.formulario_data.imagen);
+    formData.append('token', token);
+    formData.append('id_cargo', '2');
+
+    this.http.post('incidencia/registrar', formData).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("Incidencia", respuesta);
+          console.log("¡Incidencia creada exitosamente!");
+          window.location.reload();
+        } else {
+          alert("Ocurrió un error al intentar registrar. Por favor, inténtalo de nuevo más tarde.");
+        }
+        this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
+      },
+      (error) => {
+        console.error("Registro", error);
+        let errorMessage = "Error al enviar la incidencia";
+
+        if (error.status === 401) {
+          errorMessage = "Acceso no autorizado. Por favor, inicia sesión.";
+        } else if (error.status === 403) {
+          errorMessage = "El token ha expirado o es inválido.";
+          this.router.navigate(['/login']);
+        } else {
+          errorMessage = "Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.";
+        }
+
+        alert(errorMessage);
+        this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
+      }
+    );
   }
-  
+
+
   obtenerIncidencias(token: string) {
     // Realizar la solicitud HTTP para obtener las incidencias del cliente
     this.enviarIncidenciaService.obtenerIncidenciasCliente(token).subscribe(
       (respuesta: any) => {
         console.log("Incidencias", respuesta);
         // Almacenar las incidencias en la variable
-        this.incidencias = respuesta["incidencias"]; 
-  
+        this.incidencias = respuesta["incidencias"];
+
         // Para cada incidencia, puedes modificar la URL de la imagen para que solo contenga la ruta relativa
         this.incidencias.forEach((incidencia: any) => {
           // Eliminar la parte del dominio de la URL de la imagen y dejar solo la ruta relativa

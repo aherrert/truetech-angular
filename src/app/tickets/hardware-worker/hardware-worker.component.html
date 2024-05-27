@@ -32,7 +32,7 @@
     </select>
   
     <!-- Botón de enviar para actualizar la incidencia -->
-    <br><button (click)="editarIncidencia2()">Enviar</button>
+    <br><button (click)="editarIncidencia2()" (click)="activarCarga()">Enviar</button>
   </div>
 
   <div class="title-box3">
@@ -42,7 +42,7 @@
     <label for="idTicket">ID del Ticket:</label>
     <input type="number" min="0" id="idTicket2" name="idTicket2" [(ngModel)]="id2">
     <!-- Botón de enviar para actualizar la incidencia -->
-    <br><button (click)="obtenerHistorialIncidencias()">Enviar</button>
+    <br><button (click)="obtenerHistorialIncidencias()" (click)="activarCarga()">Enviar</button>
   
     <p></p><div *ngIf="historialIncidencias.length > 0">
       <h3>Historial de Incidencias:</h3>
@@ -54,3 +54,9 @@
     <div *ngIf="historialIncidencias.length === 0 && null">
       <p>No se encontraron incidencias para este ID de ticket.</p>
     </div>
+    <div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+      <div class="centered-content">
+          <img src="../../assets/animate/svg-loaders/puff.svg" />
+          <h6 style="color:#eee">Cargando...</h6>
+      </div>
+  </div>
