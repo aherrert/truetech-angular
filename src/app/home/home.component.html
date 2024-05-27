@@ -2,17 +2,21 @@
   <div class="col">
       <!-- Utiliza solo la primera imagen de fondo -->
       <img id="foto" [src]="'../assets/imagenes/' + datos.images[0].image" class="img-fluid">
-
+ 
       <!-- Botón de login -->
       <a class="login" routerLink="/login" *ngIf="notLogged">
         <button id="botonCentrado" class="btn btn-primary">LOGIN</button>
       </a>
       <a class="login" routerLink="/login" *ngIf="!notLogged">
         <button id="botonCentrado" class="btn btn-primary">LOGOUT</button>
-      </a>   
-      <div class="content">
-        <button class="btn btn-primary" id="chatbot" (click)="toggleChatbotVisibility()">Abrir Chatbot</button>
+      </a>  
 
+      <div class="content">
+        <!-- Botón con logo del chatbot -->
+        <button class="btn btn-primary" id="chatbot" (click)="toggleChatbotVisibility()">
+          <img src="../../assets/imagenes/chatbot.png" alt="Logo del chatbot" class="logo-chatbot-img">
+        </button>
+ 
         <!-- Contenido del chatbot -->
         <div *ngIf="showChatbot">
           <!-- Aquí deberías incluir el componente Chatbot o su contenido directamente -->

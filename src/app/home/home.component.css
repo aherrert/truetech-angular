@@ -1,7 +1,10 @@
+/* Ajustes generales */
 #row {
-    max-width: 100%; /* Ajusta el ancho máximo del contenedor */
-    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    max-width: 100%;
+    overflow: hidden;
 }
+
+/* Estilo de la imagen de fondo */
 #foto {
     width: 100%;
     height: 100%;
@@ -9,35 +12,60 @@
     top: 0;
     left: 0;
     z-index: -1;
-    object-fit: cover; /* Esto ajustará la imagen manteniendo su relación de aspecto y cubriendo todo el contenedor */
+    object-fit: cover;
 }
+
+/* Estilo del botón centrado */
 #botonCentrado {
     position: relative;
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    background-color: transparent; /* Hace el botón transparente */
-    font-size: 22px; 
-    font-family: Abril Fatface; 
-    font-weight: 400; 
-    color: #ffffff; /* Color de la tipografía */
-    border: 2px solid #ffffff; /* Borde blanco */
-    padding: 10px 20px; /* Ajusta el padding según sea necesario */
-    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+    background-color: transparent;
+    font-size: 22px;
+    font-family: Abril Fatface;
+    font-weight: 400;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
 }
-.login{
+
+/* Estilo del logo del chatbot dentro del botón */
+#chatbot #botonCentrado {
+    border-radius: 50%; /* Hace que el botón sea redondo */
+}
+
+/* Estilo del logo del chatbot dentro del botón */
+#chatbot .logo-chatbot-img {
+    width: 40px; /* Ajusta el tamaño de la imagen del logo */
+    height: 40px; /* Mantiene la proporción de la imagen */
+    margin-right: 5px; /* Espacio entre el logo y el texto del botón */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    transition: transform 0.7s; /* Transición suave */
+}
+
+/* Estilo del botón de login */
+.login {
     display: inline-block;
     height: 500px;
 }
-#chatbot{
+
+/* Estilo del botón de chatbot */
+#chatbot {
     position: absolute;
     margin-top: 130px;
-    margin-left: 868px;
-}
-#botonCentrado:hover {
-    /* background-color: rgba(255, 255, 255, 0.3); Cambia el fondo a semitransparente en hover */
-    background-color: white;
-    color:black; /* Cambia el color del texto en hover */
+    margin-left: 545px;
 }
 
+/* Cambio de color en hover del botón centrado */
+#botonCentrado:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Rotación en hover del logo del chatbot */
+#chatbot .logo-chatbot-img:hover {
+    transform: rotate(360deg); /* Rota el logo en hover */
+}

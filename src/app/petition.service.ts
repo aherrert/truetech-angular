@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -114,7 +114,13 @@ export class PetitionService {
             const tokenInfo = this.parseJwt(respuesta.token);
             const rol = tokenInfo.rol;
             const nombreUsuario = tokenInfo.nombre;
+            const email = tokenInfo.email; // Suponiendo que el email se encuentra en una propiedad llamada 'email' en el token
+            const nombre = tokenInfo.nombre; 
+            const apellidos = tokenInfo.apellidos; 
 
+            localStorage.setItem('email', email); 
+            localStorage.setItem('nombre', nombre); 
+            localStorage.setItem('apellidos', apellidos); 
             localStorage.setItem('nombreUsuario', nombreUsuario); // Aquí se almacena el nombre de usuario
             // Establecer el estado de autenticación como autenticado
 
@@ -124,10 +130,10 @@ export class PetitionService {
                 this.router.navigate(['/home']);
                 break;
               case 3:
-                this.router.navigate(['/pagina-empleado-hardware']);
+                this.router.navigate(['/tickets/hardware-worker']);
                 break;
               case 2:
-                this.router.navigate(['/pagina-empleado-software']);
+                this.router.navigate(['/tickets/software-worker']);
                 break;
               case 1:
                 this.router.navigate(['/admin']);
@@ -152,38 +158,42 @@ export class PetitionService {
     );
   }
 
-  enviarEditarPerfil(formulario_data: any) {
+  editarContrasena(formulario_data: any) {
     // Obtener el token del localStorage
     const token = localStorage.getItem('token');
 
     // Verificar si el token está presente en el localStorage
     if (!token) {
-
-      console.error("Token no encontrado en el localStorage");
-      alert("¡Para editar el perfil primero debes de inciar sesión!");
-      this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
-      return;
+        console.error("Token no encontrado en el localStorage");
+        alert("¡Para editar el perfil primero debes de inciar sesión!");
+        this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+        return;
     }
+
     // Agregar el token al objeto de datos del formulario
     formulario_data.token = token;
 
     // Enviar los datos del formulario al backend junto con el token
-    this.conexHttp.post('/usuario/editarPerfil', formulario_data).subscribe(
-      (respuesta: any) => {
-        console.log("Editar Perfil", respuesta);
-        alert("¡Perfil editado correctamente!");
-      },
-      (error) => {
-        console.error("Editar Perfil", error);
-        if (error.status === 401) { // Token expirado o inválido
-          alert("¡El token es inválido! Por favor, inicia sesión nuevamente.");
-          this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
-        } else {
-          alert("Error de usuario no encontrado o que los datos no son válidos");
+    this.conexHttp.post('/usuario/cambiarContrasena', formulario_data).subscribe(
+        (respuesta: any) => {
+            console.log("Editar Perfil", respuesta);
+            alert("Contraseña editada correctamente!");
+        },
+        (error) => {
+            console.error("Editar Perfil", error);
+           if (error.status === 400) { // Datos incompletos o inválidos
+                alert("Error: Datos incompletos o inválidos");
+            } else if (error.status === 404) { // Usuario no encontrado
+                alert("Error: Usuario no encontrado");
+            } else if (error.status === 401) { // Contraseña actual incorrecta
+                alert("Error: Contraseña actual incorrecta");
+            } else {
+                alert("Error: Ha ocurrido un error inesperado");
+            }
         }
-      }
     );
-  }
+}
+
 
   obtenerUsuarios(): Observable<any> {
     return this.conexHttp.get<any>('/usuario/tabla_Admin');
@@ -199,12 +209,31 @@ export class PetitionService {
     return this.http.get<any>('/incidencia/ver-cliente', { headers });
   }
 
+  obtenerIncidenciasTrabajador(token: string): Observable<any> {
+    // Construir los encabezados de la solicitud con el token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Realizar la solicitud HTTP con los encabezados
+    return this.http.get<any>('/incidencia/ver-trabajador', { headers });
+  }
+
+  obtenerIncidenciasTrabajador2(token: string): Observable<any> {
+    // Construir los encabezados de la solicitud con el token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Realizar la solicitud HTTP con los encabezados
+    return this.http.get<any>('/incidencia/ver-trabajador2', { headers });
+  }
 
 
   enviarIncidencia(incidenciaData: any) {
     // Obtener el token del localStorage
     const token = localStorage.getItem('token');
-  
+
     // Verificar si el token está presente en el localStorage
     if (!token) {
       console.error("Token no encontrado en el localStorage");
@@ -212,14 +241,14 @@ export class PetitionService {
       this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
       return;
     }
-  
+
     // Agregar el token y el id_cargo al objeto de datos de la incidencia
     incidenciaData.token = token;
     incidenciaData.id_cargo = '2'; // Establecer el id_cargo en 2
-  
+
     // Log de los datos que se están enviando
     console.log("Datos a enviar:", incidenciaData);
-  
+
     // Crear un FormData para enviar datos y archivos
     const formData = new FormData();
     formData.append('email', incidenciaData.email);
@@ -228,7 +257,7 @@ export class PetitionService {
     formData.append('imagen', incidenciaData.imagen); // Agregar la imagen al FormData
     formData.append('token', token); // Agregar el token al FormData
     formData.append('id_cargo', '2'); // Agregar el id_cargo al FormData
-  
+
     // Realizar la solicitud HTTP con los datos de la incidencia
     this.conexHttp.post('incidencia/registrar', formData).subscribe(
       (respuesta: any) => {
@@ -243,7 +272,7 @@ export class PetitionService {
       (error) => {
         console.error("Registro", error);
         let errorMessage = "Error al enviar la incidencia";
-  
+
         if (error.status === 401) {
           errorMessage = "Acceso no autorizado. Por favor, inicia sesión.";
         } else if (error.status === 403) {
@@ -252,32 +281,176 @@ export class PetitionService {
         } else {
           errorMessage = "Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.";
         }
-  
+
         alert(errorMessage);
       }
     );
   }
-  
+
+  enviarIncidencia2(incidenciaData: any) {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
+
+    // Verificar si el token está presente en el localStorage
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para enviar una incidencia debes iniciar sesión!");
+      this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+      return;
+    }
+
+    // Agregar el token y el id_cargo al objeto de datos de la incidencia
+    incidenciaData.token = token;
+    incidenciaData.id_cargo = '3'; // Establecer el id_cargo en 2
+
+    // Log de los datos que se están enviando
+    console.log("Datos a enviar:", incidenciaData);
+
+    // Crear un FormData para enviar datos y archivos
+    const formData = new FormData();
+    formData.append('email', incidenciaData.email);
+    formData.append('asunto_reparacion', incidenciaData.asunto_reparacion);
+    formData.append('mensaje_reparacion', incidenciaData.mensaje_reparacion);
+    formData.append('imagen', incidenciaData.imagen); // Agregar la imagen al FormData
+    formData.append('token', token); // Agregar el token al FormData
+    formData.append('id_cargo', '3'); // Agregar el id_cargo al FormData
+
+    // Realizar la solicitud HTTP con los datos de la incidencia
+    this.conexHttp.post('incidencia/registrar', formData).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("Incidencia", respuesta);
+          alert("¡Incidencia creada exitosamente!");
+
+        } else {
+          alert("Ocurrió un error al intentar registrar. Por favor, inténtalo de nuevo más tarde.");
+        }
+      },
+      (error) => {
+        console.error("Registro", error);
+        let errorMessage = "Error al enviar la incidencia";
+
+        if (error.status === 401) {
+          errorMessage = "Acceso no autorizado. Por favor, inicia sesión.";
+        } else if (error.status === 403) {
+          errorMessage = "El token ha expirado o es inválido.";
+          this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+        } else {
+          errorMessage = "Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.";
+        }
+
+        alert(errorMessage);
+      }
+    );
+  }
   obtenerIncidencias(): Observable<any> {
     return this.conexHttp.get<any>('incidencias/ver');
   }
 
   editarIncidencia(formulario_data: any) {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
+
+    // Verificar si el token está presente en el localStorage
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para editar la incidencia primero debes iniciar sesión como trabajador!");
+      this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+      return;
+    }
+
+    // Agregar el token al objeto de datos del formulario
+    formulario_data.token = token;
+
     // Aquí implementa la lógica para editar la incidencia
+    // Enviar los datos del formulario al backend junto con el token
     this.conexHttp.post('/incidencia/actualizar', formulario_data).subscribe(
       (respuesta: any) => {
+        console.log("Editar Perfil", respuesta);
         if (respuesta.status === 'OK') {
-          console.log("Incidencia editada", respuesta);
-          alert("¡Incidencia editada exitosamente!");
+          alert("Incidencia editada correctamente!");
         } else {
-          alert("Ocurrió un error al intentar editar la incidencia. Por favor, inténtalo de nuevo más tarde.");
+          alert("Error desconocido");
         }
       },
       (error) => {
-        console.error("Editar incidencia", error);
-        alert("Error al editar la incidencia");
+        console.error("Editar Perfil", error);
+        if (error.status === 400) {
+          alert("No se proporcionó el ID del ticket y el nuevo estado");
+        } else if (error.status === 401) {
+          alert("Token inválido, por favor inicia sesión nuevamente");
+          this.router.navigate(['/login']);
+        } else if (error.status === 403) {
+          alert("No tienes permiso para acceder a esta funcionalidad");
+        } else if (error.status === 404) {
+          alert("No se encontró la incidencia asociada al ID proporcionado");
+        } else {
+          alert("Error desconocido");
+        }
       }
     );
+  }
+
+  editarIncidencia2(formulario_data: any) {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
+
+    // Verificar si el token está presente en el localStorage
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para editar la incidencia primero debes iniciar sesión como trabajador!");
+      this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
+      return;
+    }
+
+    // Agregar el token al objeto de datos del formulario
+    formulario_data.token = token;
+
+    // Aquí implementa la lógica para editar la incidencia
+    // Enviar los datos del formulario al backend junto con el token
+    this.conexHttp.post('/incidencia/actualizar2', formulario_data).subscribe(
+      (respuesta: any) => {
+        console.log("Editar Perfil", respuesta);
+        if (respuesta.status === 'OK') {
+          alert("Incidencia editada correctamente!");
+        } else {
+          alert("Error desconocido");
+        }
+      },
+      (error) => {
+        console.error("Editar Perfil", error);
+        if (error.status === 400) {
+          alert("No se proporcionó el ID del ticket y el nuevo estado");
+        } else if (error.status === 401) {
+          alert("Token inválido, por favor inicia sesión nuevamente");
+          this.router.navigate(['/login']);
+        } else if (error.status === 403) {
+          alert("No tienes permiso para acceder a esta funcionalidad");
+        } else if (error.status === 404) {
+          alert("No se encontró la incidencia asociada al ID proporcionado");
+        } else {
+          alert("Error desconocido");
+        }
+      }
+    );
+  }
+
+  obtenerHistorialIncidencias(idTicket: number): Observable<any> {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
+
+    // Verificar si el token está presente en el localStorage
+    if (!token) {
+      console.error("Token no encontrado en el localStorage");
+      alert("¡Para obtener el historial de incidencias debes iniciar sesión!");
+
+    }
+
+    // Construir los datos a enviar en la solicitud
+    const data = { id: idTicket, token: token };
+
+    // Realizar la solicitud HTTP para obtener el historial de incidencias
+    return this.http.post<any>('/incidencias/historico', data);
   }
 
   private parseJwt(token: string): any {

@@ -18,19 +18,11 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { MessageComponent } from './message/message.component';
-
-import { ChatbotComponent } from './chatbot/chatbot.component';
-import { MessageComponent } from './message/message.component';
-
 import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-
-import { ChatbotComponent } from './chatbot/chatbot.component';
-import { MessageComponent } from './message/message.component';
-
-import { EnviarcorreoComponent } from './enviarcorreo/enviarcorreo.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-
+import { HardwareWorkerComponent } from './tickets/hardware-worker/hardware-worker.component';
+import { SoftwareWorkerComponent } from './tickets/software-worker/software-worker.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 @NgModule({
   declarations: [
@@ -50,19 +42,15 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     MessageComponent,
     EnviarcorreoComponent,
     ResetpasswordComponent,
-
-    ChatbotComponent,
-    MessageComponent,
-
-    EnviarcorreoComponent,
-    ResetpasswordComponent,
-
+    HardwareWorkerComponent,
+    SoftwareWorkerComponent,
+    EditPasswordComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule // Agrega FormsModule aquí
   ],
   providers: [],
   bootstrap: [AppComponent]

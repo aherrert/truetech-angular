@@ -1,0 +1,56 @@
+<div class="title-box">
+    <h2 class="incidencias-title">Incidencias de Software</h2>
+</div>
+
+<div class="incidencias-container">
+    <div *ngFor="let incidencia of incidencias" class="incidencia-container">
+      <div class="incidencia-details">ID: {{ incidencia.id }}</div>
+      <div class="incidencia-details">Asunto: {{ incidencia.asunto_reparacion }}</div>
+      <div class="incidencia-details">Mensaje: {{ incidencia.mensaje_reparacion }}</div>
+      <div class="incidencia-details">Estado: {{ incidencia.estado }}</div>
+      <div class="incidencia-details">
+        <!-- Agrega una clase 'dynamic-image' para identificar las imágenes cargadas dinámicamente -->
+        Imagen:<br><img [src]="incidencia.imagen" alt="Imagen de la incidencia" class="incidencia-image dynamic-image">
+      </div>
+    </div>
+  </div>
+
+  <div class="title-box2">
+    <h2 class="incidencias-title2">Editar Incidencias</h2>
+  </div>
+  
+  <div class="control-container">
+    <label for="idTicket">Seleccionar ID del Ticket:</label>
+    <input type="number" min="0" id="idTicket" name="idTicket" [(ngModel)]="id">
+  
+    <label for="estadoTicket">Seleccionar Estado del Ticket:</label>
+    <select id="estadoTicket" name="estadoTicket" [(ngModel)]="estado">
+      <option value="abierto">Abierto</option>
+      <option value="en proceso">En Proceso</option>
+      <option value="cerrado">Cerrado</option>
+      <option value="verificar">Verificar</option>
+    </select>
+  
+    <!-- Botón de enviar para actualizar la incidencia -->
+    <br><button (click)="editarIncidencia()">Enviar</button>
+  </div>
+
+  <div class="title-box3">
+    <h2 class="incidencias-title3">Ver historial de Incidencia</h2>
+  </div>
+  <div class="control-container">
+    <label for="idTicket">ID del Ticket:</label>
+    <input type="number" min="0" id="idTicket2" name="idTicket2" [(ngModel)]="id2">
+    <!-- Botón de enviar para actualizar la incidencia -->
+    <br><button (click)="obtenerHistorialIncidencias()">Enviar</button>
+  
+    <p></p><div *ngIf="historialIncidencias.length > 0">
+      <h3>Historial de Incidencias:</h3>
+        <li *ngFor="let incidencia of historialIncidencias">
+          <!-- Aquí puedes mostrar la información de cada incidencia -->
+          ID: {{ incidencia.id }}, Estado: {{ incidencia.estado }}, Creado en: {{ incidencia.created_at }}, Actualizado en: {{ incidencia.updated_at }}
+        </li>
+    </div>
+    <div *ngIf="historialIncidencias.length === 0 && null">
+      <p>No se encontraron incidencias para este ID de ticket.</p>
+    </div>

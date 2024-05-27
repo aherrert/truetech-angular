@@ -9,9 +9,7 @@
     <p class="subtitulo">Complete el siguiente formulario para abrir una incidencia de ticket.</p>
     <div class="form-group">
       <label for="correoElectronico">Correo Electrónico</label>
-      <input type="email" name="email" id="email" [(ngModel)]="formulario_data.email" required>
-      <p></p>
-      <span [hidden]="formulario.controls['email'].valid || !formulario.controls['email'].dirty" class="text-danger">Por favor, introduzca un correo electrónico válido</span>
+      <input type="email" name="email" id="email" [(ngModel)]="email" required disabled>
     </div>
     <div class="form-group">
       <label for="asunto">Asunto</label>
@@ -41,6 +39,10 @@
     <button type="submit" (click)="toggleFormulario()">Abrir ticket</button>
   </div>
 </div>
+<div class="title-box">
+  <h2 class="incidencias-title">Historial de Incidencias de Software</h2>
+</div>
+
 <div class="incidencias-container">
   <div *ngFor="let incidencia of incidencias" class="incidencia-container">
     <div class="incidencia-details">ID: {{ incidencia.id }}</div>
