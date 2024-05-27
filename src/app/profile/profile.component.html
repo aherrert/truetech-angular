@@ -26,8 +26,16 @@
         </div>
         <p><strong>Correo Electrónico:</strong> {{ email }}</p>
         <p><strong>Contraseña:</strong> *********</p>
-        <p></p><button *ngIf="editandoNombre || editandoApellidos" class="guardar-btn" (click)="guardarCambios()">Guardar Cambios</button>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <p></p><button *ngIf="editandoNombre || editandoApellidos" class="guardar-btn" (click)="activarCarga()" (click)="guardarCambios()">Guardar Cambios</button>
 
         <p></p><a routerLink="/edit/password" class="change-link">Cambiar contraseña</a>
+    </div>
+    <div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+        <div class="centered-content">
+            <img src="../../assets/animate/svg-loaders/puff.svg" />
+            <h6 style="color:#eee">Cargando...</h6>
+        </div>
     </div>
 </div>

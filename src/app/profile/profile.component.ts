@@ -13,9 +13,14 @@ export class ProfileComponent implements OnInit {
   email: string | null = '';
   editandoNombre: boolean = false;
   editandoApellidos: boolean = false;
+  errorMessage: string = '';
+  imgCargar = { cargarsvg: false }; // Definición de la propiedad imgCargar
+
 
   constructor(private conexHttp: HttpClient, private router: Router) {}
-
+  activarCarga() {
+    this.imgCargar.cargarsvg = true; // Activar la carga
+  }
   ngOnInit(): void {
     // Obtener la información del usuario del localStorage
     this.nombre = localStorage.getItem('nombre');
@@ -36,7 +41,7 @@ export class ProfileComponent implements OnInit {
   
     if (!token) {
       console.error("Token no encontrado en el localStorage");
-      alert("¡Para editar el perfil primero debes de inciar sesión!");
+      alert("¡Para editar el perfil primero debes de iniciar sesión!");
       this.router.navigate(['/login']);
       return;
     }
@@ -52,23 +57,33 @@ export class ProfileComponent implements OnInit {
       (respuesta: any) => {
         console.log("Editar Perfil", respuesta);
         if (respuesta.status === 'OK') {
-          alert("¡Perfil editado correctamente!");
+          console.log("¡Perfil editado correctamente!");
           window.location.reload();
-          // Actualizar el localStorage con el nuevo nombre y apellidos
           
+          // Actualizar el localStorage con el nuevo nombre y apellidos
           localStorage.setItem('nombre', this.nombre ?? '');
           localStorage.setItem('nombreUsuario', this.nombre ?? ''); // Aquí se almacena el nombre de usuario
           localStorage.setItem('apellidos', this.apellidos ?? '');
+        } else {
+          this.errorMessage = respuesta.message || "Ocurrió un error al intentar editar el perfil. Por favor, inténtalo de nuevo más tarde.";
         }
+        this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
       },
       (error) => {
         console.error("Editar Perfil", error);
         if (error.status === 401) {
-          alert("¡El token es inválido! Por favor, inicia sesión nuevamente.");
+          this.errorMessage = "¡El token es inválido! Por favor, inicia sesión nuevamente.";
           this.router.navigate(['/login']);
+        } else if (error.error && error.error.message) {
+          this.errorMessage = error.error.message;
+        } else if (error.status === 400) {
+          this.errorMessage = "Datos incompletos o inválidos.";
+        } else if (error.status === 404) {
+          this.errorMessage = "Usuario no encontrado.";
         } else {
-          alert("Error de usuario no encontrado o que los datos no son válidos");
+          this.errorMessage = "Error desconocido. Por favor, inténtalo de nuevo más tarde.";
         }
+        this.imgCargar.cargarsvg = false;
       }
     );
   }  

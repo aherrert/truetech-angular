@@ -7,10 +7,10 @@
       <a class="login" routerLink="/login" *ngIf="notLogged">
         <button id="botonCentrado" class="btn btn-primary">LOGIN</button>
       </a>
-      <a class="login" routerLink="/login" *ngIf="!notLogged">
-        <button id="botonCentrado" class="btn btn-primary">LOGOUT</button>
-      </a>  
-
+      <a class="login" routerLink="/home" *ngIf="!notLogged">
+        <button id="botonCentrado" class="btn btn-primary" (click)="logout()">LOGOUT</button>
+      </a> 
+      
       <div class="content">
         <!-- Botón con logo del chatbot -->
         <button class="btn btn-primary" id="chatbot" (click)="toggleChatbotVisibility()">

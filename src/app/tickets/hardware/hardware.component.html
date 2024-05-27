@@ -28,7 +28,7 @@
       <input type="file" name="imagen" id="imagen" accept="image/*" (change)="onFileSelected($event)" required>
       <span *ngIf="formulario.controls['imagen'].errors?.['required'] && formulario.controls['imagen'].touched" class="text-danger">Por favor, seleccione una imagen</span>
     </div>
-    <button type="submit" [disabled]="!formulario.valid">Abrir Incidencia</button>
+    <button type="submit" [disabled]="!formulario.valid" (click)="activarCarga()">Abrir Incidencia</button>
   </form>
   <!-- Mensaje de incidencia enviada -->
   <div class="caja-alargada" *ngIf="incidenciaEnviada">
@@ -55,7 +55,12 @@
     </div>
   </div>
 </div>
-
+<div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+  <div class="centered-content">
+      <img src="../../assets/animate/svg-loaders/puff.svg" />
+      <h6 style="color:#eee">Cargando...</h6>
+  </div>
+</div>
 
 
 
