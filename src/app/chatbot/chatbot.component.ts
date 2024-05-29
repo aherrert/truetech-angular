@@ -21,7 +21,12 @@ export class ChatbotComponent {
     },
     {
       pregunta: "¿Cómo puedo contactaros?",
-      respuesta: "Puedes contactarnos a través de nuestro correo electrónico support@truetech.com o por teléfono al +123456789.",
+      respuesta: "Puedes contactarnos a través de nuestro correo electrónico truetech.s.a@gmail.com o por teléfono al +34 634 74 02 72.",
+      seleccionada: false
+    },
+    {
+      pregunta: "¿Como puedo abrir un ticket?",
+      respuesta: "Para abrir un ticket, necesitas dirigirte al menú ubicado en la parte superior y seleccionar la sección de 'Departamentos'. Desde allí, elige si deseas abrir uno relacionado con hardware o software.",
       seleccionada: false
     }
   ];

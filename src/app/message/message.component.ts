@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent {
-  @Input() content!: string; // Agregamos el modificador de confianza !
-  @Input() sender!: string;  // Agregamos el modificador de confianza !
+  @Input() content!: string; 
+  @Input() sender!: string;  
 }
