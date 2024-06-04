@@ -1,7 +1,7 @@
 /* Estilos generales del chatbot */
 .chat-container {
   position: absolute;
-  bottom: 280px;
+  bottom: -20px;
   right: 20px;
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PetitionService } from '../petition.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resetpassword',
@@ -8,8 +9,9 @@ import { PetitionService } from '../petition.service';
 })
 export class ResetpasswordComponent {
   formulario_data: any;
+  imgCargar = { cargarsvg: false }; // Definición de la propiedad imgCargar
 
-  constructor(private resetpasswordService: PetitionService) { 
+  constructor(private http: HttpClient, private router: Router) { 
     this.formulario_data = {
       email: '',
       password: '',
@@ -17,7 +19,28 @@ export class ResetpasswordComponent {
     };
   }
 
+  activarCarga() {
+    this.imgCargar.cargarsvg = true; // Activar la carga
+  }
+
+
   enviarResetpassword() {
-    this.resetpasswordService.enviarResetpassword(this.formulario_data);
+    this.http.post('/usuario/resetpassword', this.formulario_data).subscribe(
+      (respuesta: any) => {
+        if (respuesta.status === 'OK') {
+          console.log("resetpassword", respuesta);
+          console.log("resetpassword exitoso!");
+          this.router.navigate(['/login']);
+        } else {
+          alert("Ocurrió un error al intentar resetpassword. Por favor, inténtalo de nuevo más tarde.");
+        }
+        this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
+      },
+      (error) => {
+        console.log("resetpassword", error);
+        alert("Ocurrió un error al intentar resetpassword. Por favor, inténtalo de nuevo más tarde.");
+        this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
+      }
+    );
   }
 }

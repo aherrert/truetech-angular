@@ -97,9 +97,10 @@ export class AdminComponent {
       console.log("Form data:", formulario_data); // Check form data
       this.enviarUsuarioAdmin.eliminarUsuarios(formulario_data).subscribe(
         (respuesta: any) => {
-          if (respuesta.status !== 'OK') {
+          if (respuesta.status == 'OK') {
             // Si la respuesta no es 'OK', asigna el mensaje de error a errorMessage2
-            this.errorMessage2 = "Error al eliminar usuario: " + respuesta.message;
+            console.log ("respuesta.message");
+            window.location.reload();
           }
           this.imgCargar.cargarsvg = false; // Desactivar la carga después de recibir la respuesta
         },
