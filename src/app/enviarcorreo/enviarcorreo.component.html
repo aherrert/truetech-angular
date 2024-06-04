@@ -5,7 +5,7 @@
     </h4>
     <!-- Subheading -->
     <p class="text-center text-muted mb-5">
-        Complete el siguiente formulario para recir un correo para que puedas canviar la contraseña.</p>
+        Complete el siguiente formulario para recir un correo para que puedas cambiar la contraseña.</p>
     <form #loginForm="ngForm" (ngSubmit)="enviarcorreo()">
         <label for="correo">Correo Electrónico</label>
         <br>
@@ -13,11 +13,15 @@
             email pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="">
 
         <p></p>
-        <span [hidden]="loginForm.controls['email'].valid || !loginForm.controls['email'].dirty">Correo
-            electrónico inválido</span>
-
-
-        
-        <h2><button type="submit" >enviar correo</button></h2>
+        <span [hidden]="loginForm.controls['email'].valid || !loginForm.controls['email'].dirty">Correo electrónico inválido</span>
+        <input type="checkbox" id="recordarme-checkbox" class="recordarme-checkbox">
+        <label for="recordarme-checkbox" class="recordarme-label">Recordarme</label>
+        <h2><button type="submit" (click)="activarCarga()">Enviar correo</button></h2>
     </form>
+    <div class="loading-screen" *ngIf="imgCargar.cargarsvg">
+        <div class="centered-content">
+            <img src="../../assets/animate/svg-loaders/puff.svg" />
+            <h6 style="color:#eee">Cargando...</h6>
+        </div>
+    </div>
 </div>

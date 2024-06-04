@@ -148,35 +148,35 @@ export class PetitionService {
       (respuesta: any) => {
         if (respuesta.status === 'OK') {
           console.log("resetpassword", respuesta);
-          alert("resetpassword exitoso!");
-          this.router.navigate(['/resetpassword']);
+          console.log("resetpassword exitoso!");
+          this.router.navigate(['/login']);
         } else {
           alert("Ocurrió un error al intentar resetpassword. Por favor, inténtalo de nuevo más tarde.");
         }
       },
       (error) => {
-        console.error("resetpassword", error);
-        alert("Usuario existente con el mismo correo electrónico");
+        console.log("resetpassword", error);
+        console.log("Usuario existente con el mismo correo electrónico");
       }
     );
   }
 
 
-  enviarcorreo(formulario_data: any) {
-    this.conexHttp.post('/usuario/enviarcorreo', formulario_data).subscribe(
-      (respuesta: any) => {
-        if (respuesta.status === 'OK') {
-          console.log("enviar correo", respuesta);
-          alert("enviar correo exitoso!");
-          this.router.navigate(['/enviarcorreo']);
-        } else {
-          alert("Ocurrió un error al intentar enviar correo. Por favor, inténtalo de nuevo más tarde.");
-        }
-      },
-      (error) => {
-        console.error("enviar correo", error);
-        alert("No se ha podido enviar el correo.");
-      }
-    );
-  }
+  // enviarcorreo(formulario_data: any) {
+  //   this.conexHttp.post('/usuario/enviarcorreo', formulario_data).subscribe(
+  //     (respuesta: any) => {
+  //       if (respuesta.status === 'OK') {
+  //         console.log("enviar correo", respuesta);
+  //         console.log("enviar correo exitoso!");
+  //         this.router.navigate(['/resetpassword']);
+  //       } else {
+  //         alert("Ocurrió un error al intentar enviar correo. Por favor, inténtalo de nuevo más tarde.");
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error("enviar correo", error);
+  //       alert("No se ha podido enviar el correo.");
+  //     }
+  //   );
+  // }
 }
