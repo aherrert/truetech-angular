@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         const url = event.url;
-        this.showHeader1 = !url.includes('/login') && !url.includes('/register') && !url.includes('/software') && !url.includes('/hardware')&& !url.includes('/profile')&& !url.includes('/contact')&& !url.includes('/admin'); // Mostrar el header en todas las rutas excepto '/about' y '/login'
-        this.showHeader2 = url.includes('/login') || url.includes('/register') || url.includes('/software') || url.includes('/hardware')|| url.includes('/profile')|| url.includes('/contact')|| url.includes('/admin'); // Mostrar el header2 solo en '/login', '/register, /tickets y /profile'
+        this.showHeader1 = !url.includes('/login') && !url.includes('/register') && !url.includes('/software') && !url.includes('/hardware')&& !url.includes('/profile')&& !url.includes('/contact')&& !url.includes('/admin') && !url.includes('/enviarcorreo') && !url.includes('/resetpassword') && !url.includes('/edit/password'); // Mostrar el header en todas las rutas excepto '/about' y '/login'
+        this.showHeader2 = url.includes('/login') || url.includes('/register') || url.includes('/software') || url.includes('/hardware')|| url.includes('/profile')|| url.includes('/contact')|| url.includes('/admin') || url.includes('/enviarcorreo') || url.includes('/resetpassword') || url.includes('/edit/password'); // Mostrar el header2 solo en '/login', '/register, /tickets y /profile'
       }
     });
   }
